@@ -1,7 +1,10 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libft/libft.h"
+# include <stdlib.h>
+# include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
 # include "../mlx_linux/mlx.h"
 
 typedef struct s_fdf
@@ -12,8 +15,8 @@ typedef struct s_fdf
 
 	void	*mlx_ptr;
 	void	*win_ptr;
-}		t_fdf;
+}	t_fdf;
 
-void	read_file(char *file_name, fdf *data);
+void	read_file(char *file_name, t_fdf *data);
 
 #endif

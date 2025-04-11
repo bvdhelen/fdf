@@ -8,13 +8,31 @@ int	get_height(char *file_name)
 
 	fd = open(file_name, O_RDONLY, 0);
 	height = 0;
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd))
 	{
 		height++;
 		free(line);
 	}
 	close(fd);
 	return (height);
+}
+
+//la he cogido del split, a ver como le haago para no ponerla doble
+static int	count_words(char const *str, char limit)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
+	{
+		if ((i == 0 && str[i] != limit)
+			|| (str[i] != limit && str[i - 1] == limit))
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 int	get_width(char *file_name)
@@ -24,7 +42,7 @@ int	get_width(char *file_name)
 	int		width;
 
 	fd = open(file_name, O_RDONLY, 0);
-	get_next_line(fd, &line);
+	get_next_line(fd);
 	width = count_words(line, ' ');
 	free(line);
 	close(fd);
@@ -36,7 +54,7 @@ void	fill_matrix(int *z_line, char *line)
 	char	**nums;
 	int		i;
 
-	nums = ft_strsplit(line, ' ');
+	nums = ft_split(line, ' ');
 	i = 0;
 	while (nums[i])
 	{
@@ -61,7 +79,7 @@ void	read_file(char *file_name, t_fdf *data)
 		data->z_matrix[i++] = (int *)malloc(sizeof(int) * (data->width + 1));
 	fd = open(file_name, O_RDONLY, 0);
 	i = 0;
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd))
 	{
 		fill_matrix(data->z_matrix[i], line);
 		free(line);
