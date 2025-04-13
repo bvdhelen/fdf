@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		j = 0;
 		while (j < data->width)
 		{
-			ft_printf("%3d", data->z_matrix[i][j]);
+			ft_printf("%d", data->z_matrix[i][j]);
 			j++;
 		}
 		ft_printf("\n");

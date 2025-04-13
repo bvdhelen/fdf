@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 00:48:17 by eldiaz-c          #+#    #+#              #
-#    Updated: 2024/10/22 18:23:37 by eldiaz-c         ###   ########.fr        #
+#    Updated: 2025/04/13 17:06:48 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(NAME): $(OBJECTS) $(INCLUDE)
 
 # Regla para crear los archivos .o
 $(OBJECTS):
-	$(CC) -c $(CFLAGS) $(SOURCES)
+	@$(CC) -c $(CFLAGS) $(SOURCES)
 
 # Regla para crear los archivos bonus .o sin hacer relink
 bonus:

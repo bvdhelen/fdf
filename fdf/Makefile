@@ -7,7 +7,7 @@ FLAGS_1 = -Wall -Werror -Wextra -g
 FLAGS_2 = -Imlx_linux -O3
 
 # Linkeo??
-LINK = -Lmlx_linux -lmlx_Linux -L/mlx_linux -lXext -lX11 -lm -lz
+LINK = -L../mlx_linux -l:libmlx.a -lXext -lX11 -lm -lz
 
 # Rutas de bibliotecas auxiliares
 LIBFT_DIR = libft/
@@ -19,7 +19,7 @@ GET_NEXT_LINE_DIR = get_next_line/
 # -lft = libft.a sirve para indicar que biblioteca enlazar
 INCLUDE_LIBFT = -L ./libft -lft
 INCLUDE_FT_PRINTF = -L ./ft_printf -lftprintf
-INCLUDE_GET_NEXT_LINE = -L ./get_next_line -lgnl
+INCLUDE_GET_NEXT_LINE = -L ./get_next_line -l:get_next_line.a
 INCLUDE_MLX = -Lmlx_linux -lmlx
 
 # Definir códigos de color
@@ -45,7 +45,7 @@ OBJ = $(SRC:.c=.o)
 # $< representa el archivo de entrada (el .c que se está compilando)
 # -o $@ especifica el nombre del archivo de salida que se está generando
 .c.o:
-	$(CC) $(FLAGS_1) $(FLAGS_2) -c $< -o $@
+	@$(CC) $(FLAGS_1) $(FLAGS_2) -c $< -o $@
 
 # Regla para compilar fdf con libft, ft_printf y get_next_line
 # -C sirve para cambiar UNA VEZ al directorio especificado antes de ejecutar el Makefile
@@ -89,18 +89,32 @@ re: fclean all
 # ASCII Art
 header:
 	@echo
-	@echo " $(WHITE)                  _                                "
-	@echo " $(WHITE)  _ __  _   _ ___| |__    _____      ____ _ _ __   "
-	@echo " $(WHITE) | '_ \| | | / __| '_ \  / __\ \ /\ / / _  | '_ \  "
-	@echo " $(WHITE) | |_) | |_| \__ \ | | | \__ \\  V  V / (_| | |_) | "
-	@echo " $(WHITE) | .__/ \__,_|___/_| |_| |___/ \_/\_/ \__,_| .__/  "
-	@echo " $(WHITE) |_|__  _ __ ___  _   _  ___  ___| |_      |_|     "
-	@echo " $(WHITE) | '_ \| '__/ _ \| | | |/ _ \/ __| __|             "
-	@echo " $(WHITE) | |_) | | | (_) | |_| |  __/ (__| |_              "
-	@echo " $(WHITE) | .__/|_|  \___/ \__, |\___|\___|\__|             "
-	@echo " $(WHITE) |_|              |___/                            "
+	@echo " $(WHITE)                  ____    ______         "
+	@echo " $(WHITE)                 / __/___/ / __/         "
+	@echo " $(WHITE)                / /_/ __  / /_           "
+	@echo " $(WHITE)               / __/ /_/ / __/           "
+	@echo " $(WHITE)              /_/  \__,_/_/           __ "
+	@echo " $(WHITE)    ____  _________  __  _____  _____/ /_"
+	@echo " $(WHITE)   / __ \/ ___/ __ \/ / / / _ \/ ___/ __/"
+	@echo " $(WHITE)  / /_/ / /  / /_/ / /_/ /  __/ /__/ /_  "
+	@echo " $(WHITE) / .___/_/   \____/\__, /\___/\___/\__/  "
+	@echo " $(WHITE)/_/               /____/                 "
 	@echo " $(MAGENTA) "
 	@echo
+
+	@echo " $(WHITE)    __     _  __                     "
+	@echo " $(WHITE)   / _| __| |/ _|                    "
+	@echo " $(WHITE)  | |_ / _\` | |_                     "
+	@echo " $(WHITE)  |  _| (_| |  _|                    "
+	@echo " $(WHITE)  |_|  \__,_|_|                  _   "
+	@echo " $(WHITE) _ __  _ __ ___  _   _  ___  ___| |_ "
+	@echo " $(WHITE)| '_ \| '__/ _ \| | | |/ _ \/ __| __|"
+	@echo " $(WHITE)| |_) | | | (_) | |_| |  __/ (__| |_ "
+	@echo " $(WHITE)| .__/|_|  \___/ \__, |\___|\___|\__|"
+	@echo " $(WHITE)|_|              |___/              "
+	@echo " $(MAGENTA) "
+	@echo
+
 	
 header2:
 	@echo "$(RESET)"

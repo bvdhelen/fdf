@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/25 19:57:16 by eldiaz-c          #+#    #+#              #
-#    Updated: 2025/04/11 14:40:36 by eldiaz-c         ###   ########.fr        #
+#    Updated: 2025/04/13 16:59:04 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(NAME): $(OBJECTS) $(INCLUDE)
 
 # Regla para crear los archivos .o
 $(OBJECTS):
-		$(CC) -c $(CFLAGS) $(SOURCES)
+		@$(CC) -c $(CFLAGS) $(SOURCES)
 
 # Eliminar todos los archivos .o y .a
 clean:

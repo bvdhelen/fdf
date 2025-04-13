@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 21:43:46 by eldiaz-c          #+#    #+#              #
-#    Updated: 2024/11/27 16:46:29 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/13 17:07:18 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,11 @@ $(NAME): $(OBJECTS) $(INCLUDE)
 
 # Regla para crear los archivos .o
 $(OBJECTS):
-		$(CC) -c $(CFLAGS) $(SOURCES)
+		@$(CC) -c $(CFLAGS) $(SOURCES)
 
 # Regla para crear los archivos bonus .o sin hacer relink
 bonus:
-		make SOURCES="$(SOURCES) $(BONUS_SOURCES)"
+		@make SOURCES="$(SOURCES) $(BONUS_SOURCES)"
 
 # Eliminar todos los archivos .o y .a
 clean:
