@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 17:56:48 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/11/27 11:46:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/14 20:44:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
+/*
 int	main(void)
 {
 	int		fd;
@@ -33,3 +34,4 @@ int	main(void)
 	close (fd);
 	return (0);
 }
+*/

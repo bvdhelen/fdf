@@ -45,7 +45,7 @@ OBJ = $(SRC:.c=.o)
 # $< representa el archivo de entrada (el .c que se está compilando)
 # -o $@ especifica el nombre del archivo de salida que se está generando
 .c.o:
-	@$(CC) $(FLAGS_1) $(FLAGS_2) -c $< -o $@
+	$(CC) $(FLAGS_1) $(FLAGS_2) -c $< -o $@
 
 # Regla para compilar fdf con libft, ft_printf y get_next_line
 # -C sirve para cambiar UNA VEZ al directorio especificado antes de ejecutar el Makefile
@@ -89,35 +89,21 @@ re: fclean all
 # ASCII Art
 header:
 	@echo
-	@echo " $(WHITE)                  ____    ______         "
-	@echo " $(WHITE)                 / __/___/ / __/         "
-	@echo " $(WHITE)                / /_/ __  / /_           "
-	@echo " $(WHITE)               / __/ /_/ / __/           "
-	@echo " $(WHITE)              /_/  \__,_/_/           __ "
-	@echo " $(WHITE)    ____  _________  __  _____  _____/ /_"
-	@echo " $(WHITE)   / __ \/ ___/ __ \/ / / / _ \/ ___/ __/"
-	@echo " $(WHITE)  / /_/ / /  / /_/ / /_/ /  __/ /__/ /_  "
-	@echo " $(WHITE) / .___/_/   \____/\__, /\___/\___/\__/  "
-	@echo " $(WHITE)/_/               /____/                 "
+	@echo " $(YELLOW)                  ____    ______         "
+	@echo " $(YELLOW)                 / __/___/ / __/         "
+	@echo " $(YELLOW)                / /_/ __  / /_           "
+	@echo " $(YELLOW)               / __/ /_/ / __/           "
+	@echo " $(YELLOW)              /_/  \__,_/_/           __ "
+	@echo " $(YELLOW)    ____  _________  __  _____  _____/ /_"
+	@echo " $(YELLOW)   / __ \/ ___/ __ \/ / / / _ \/ ___/ __/"
+	@echo " $(YELLOW)  / /_/ / /  / /_/ / /_/ /  __/ /__/ /_  "
+	@echo " $(YELLOW) / .___/_/   \____/\__, /\___/\___/\__/  "
+	@echo " $(YELLOW)/_/               /____/                 "
 	@echo " $(MAGENTA) "
 	@echo
-
-	@echo " $(WHITE)    __     _  __                     "
-	@echo " $(WHITE)   / _| __| |/ _|                    "
-	@echo " $(WHITE)  | |_ / _\` | |_                     "
-	@echo " $(WHITE)  |  _| (_| |  _|                    "
-	@echo " $(WHITE)  |_|  \__,_|_|                  _   "
-	@echo " $(WHITE) _ __  _ __ ___  _   _  ___  ___| |_ "
-	@echo " $(WHITE)| '_ \| '__/ _ \| | | |/ _ \/ __| __|"
-	@echo " $(WHITE)| |_) | | | (_) | |_| |  __/ (__| |_ "
-	@echo " $(WHITE)| .__/|_|  \___/ \__, |\___|\___|\__|"
-	@echo " $(WHITE)|_|              |___/              "
-	@echo " $(MAGENTA) "
-	@echo
-
 	
 header2:
-	@echo "$(RESET)"
+	@echo "$(WHITE)"
 	@echo "                                                                                                    "
 	@echo "                                                                                                    "
 	@echo "                                       ░ ░░░░░░░░   ░░░░ ░░░░  ░                                    "
