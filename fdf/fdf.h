@@ -30,5 +30,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 void	read_file(char *file_name, t_fdf *data);
+int		get_height(char *file_name);
+int		get_width(char *file_name);
 
 #endif

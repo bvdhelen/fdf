@@ -34,8 +34,10 @@ WHITE = \033[0;37m
 RESET = \033[0m
 
 # Archivos fuente y archivos objeto
-SRC = 	main.c \
+SRC = 	get_height.c \
+		get_width.c \
 		read_file.c \
+		main.c \
 
 
 OBJ = $(SRC:.c=.o)
