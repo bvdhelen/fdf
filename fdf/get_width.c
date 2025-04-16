@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-//la he cogido del split
 static int	count_words(char const *str, char limit)
 {
 	int	i;

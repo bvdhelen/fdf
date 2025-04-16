@@ -28,7 +28,10 @@ void	fill_matrix(int *z_line, char *line, int width)
 		i++;
 	}
 	while (nums[i])
-		free(nums[i++]);
+	{
+		free(nums[i]);
+		i++;
+	}
 	free(nums);
 }
 
