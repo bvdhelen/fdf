@@ -19,7 +19,7 @@ int	deal_key(int key, void *data)
 	return (0);
 }
 
-void	free_matrix(t_fdf *data)
+static void	free_matrix(t_fdf *data)
 {
 	int	i;
 
@@ -32,11 +32,28 @@ void	free_matrix(t_fdf *data)
 	free(data->z_matrix);
 }
 
+static void	print_matrix(t_fdf *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->height)
+	{
+		j = 0;
+		while (j < data->width)
+		{
+			ft_printf("%d", data->z_matrix[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	*data;
-	int		i;
-	int		j;
 
 	if (argc != 2)
 	{
@@ -56,18 +73,7 @@ int	main(int argc, char **argv)
 		free(data);
 		return (1);
 	}
-	i = 0;
-	while (i < data->height)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			ft_printf("%d", data->z_matrix[i][j]);
-			j++;
-		}
-		ft_printf("\n");
-		i++;
-	}
+	print_matrix(data);
 	free_matrix(data);
 	free(data);
 	return (0);
