@@ -37,7 +37,7 @@ RESET = \033[0m
 SRC = 	get_height.c \
 		get_width.c \
 		read_file.c \
-		main.c \
+		main_print_map.c \
 
 
 OBJ = $(SRC:.c=.o)
