@@ -18,19 +18,31 @@
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
 # include "../mlx_linux/mlx.h"
+# include <X11/keysym.h>
 
 typedef struct s_fdf
 {
 	int		width;
 	int		height;
 	int		**z_matrix;
+	int		zoom;
+	int		color;
 
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_fdf;
 
-void	read_file(char *file_name, t_fdf *data);
+
 int		get_height(char *file_name);
 int		get_width(char *file_name);
+void	read_file(char *file_name, t_fdf *data);
+
+int		handle_key(int key, t_fdf *data);
+
+void	free_matrix(t_fdf *data);
+void	free_all(t_fdf *data);
+
+void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
+void	draw(t_fdf *data);
 
 #endif

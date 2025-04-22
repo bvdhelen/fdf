@@ -12,19 +12,6 @@
 
 #include "fdf.h"
 
-static void	free_matrix(t_fdf *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->height)
-	{
-		free(data->z_matrix[i]);
-		i++;
-	}
-	free(data->z_matrix);
-}
-
 static void	print_matrix(t_fdf *data)
 {
 	int	i;

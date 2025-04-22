@@ -12,10 +12,15 @@
 
 #include "fdf.h"
 
-int	deal_key(int key, void *data)
+int	handle_key(int key, t_fdf *data)
 {
-	(void)data;
-	ft_printf("%d\n", key);
+	if (key == XK_Escape)
+	{
+		printf("The %d key (ESC) has been pressed\n\n", key);
+		free_all(data);
+		exit(1);
+	}
+	ft_printf("The %d key has been pressed\n\n", key);
 	return (0);
 }
 
@@ -41,8 +46,20 @@ int	main(int argc, char **argv)
 		free(data);
 		return (1);
 	}
-	print_matrix(data);
-	free_matrix(data);
-	free(data);
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+		return (1);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
+	data->zoom = 20;
+	if (data->win_ptr == NULL)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		return (1);
+	}
+	draw(data);
+	mlx_key_hook(data->win_ptr, handle_key, data);
+	mlx_loop(data->mlx_ptr);
+	free_all(data);
 	return (0);
 }
