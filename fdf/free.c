@@ -42,5 +42,5 @@ void	free_all(t_fdf *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	free(data);	
+	free(data);
 }

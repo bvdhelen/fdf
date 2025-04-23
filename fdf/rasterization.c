@@ -20,14 +20,22 @@ float	mod(float i)
 	return (i < 0) ? -i : i;
 }
 
+void	isometric(float *x, float *y, int z)
+{
+	*x = (*x - *y) * cos(0.8);
+	*y = (*x + *y) * sin(0.8) - z;
+}
+
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 {
 	float	x_step;
 	float	y_step;
 	int		max;
 	int		z;
+	int		z1;
 	
 	z = data->z_matrix[(int)y][(int)x];
+	z1 = data->z_matrix[(int)y1][(int)x1];
 	//---------zoom------------
 	x *= data->zoom;
 	y *= data->zoom;
@@ -40,8 +48,18 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	x1 += data->offset;
 	y1 += data->offset;
 
-	//---------color--------
-	data->color = (z) ? 0x0000ff : 0xffffff;
+	//---------color------------
+	data->color = (z || z1) ? 0x0000ff : 0xffffff;
+
+	//---------3D---------------
+	isometric(&x, &y, z);
+	isometric(&x1, &y1, z1);
+
+	//---------shift-------------
+	x += 150;
+	y += 150;
+	x1 += 150;
+	y1 += 150;
 
 	x_step = x1 - x;
 	y_step = y1 - y;

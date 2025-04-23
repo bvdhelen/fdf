@@ -21,6 +21,7 @@
 # include "../mlx_linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <math.h>
 
 typedef struct s_img
 {
@@ -45,7 +46,6 @@ typedef struct s_fdf
 	void	*win_ptr;
 }	t_fdf;
 
-
 int		get_height(char *file_name);
 int		get_width(char *file_name);
 void	read_file(char *file_name, t_fdf *data);
@@ -60,6 +60,6 @@ void	draw(t_fdf *data);
 
 void	my_pixel_put(t_img *img, int x, int y, int color);
 
-void    init_image(t_fdf *data, int width, int height);
+void	init_image(t_fdf *data, int width, int height);
 
 #endif

@@ -16,11 +16,19 @@ int	handle_key(int key, t_fdf *data)
 {
 	if (key == XK_Escape)
 	{
-		printf("The %d key (ESC) has been pressed\n\n", key);
+		ft_printf("The %d key (ESC) has been pressed\n\n", key);
 		free_all(data);
-		exit(1);
+		exit(0);
 	}
 	ft_printf("The %d key has been pressed\n\n", key);
+	return (0);
+}
+
+int	handle_event(t_fdf *data)
+{
+	ft_printf("Program closed using the 'x' button\n\n");
+	free_all(data);
+	exit(0);
 	return (0);
 }
 
@@ -60,8 +68,10 @@ int	main(int argc, char **argv)
 	data->offset = 200;
 	init_image(data, 1000, 1000);
 	draw(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.img_ptr, 0, 0);
 	mlx_key_hook(data->win_ptr, handle_key, data);
+	mlx_hook(data->win_ptr, 17, 0, handle_event, data);
 	mlx_loop(data->mlx_ptr);
 	free_all(data);
 	return (0);
