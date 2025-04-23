@@ -26,28 +26,33 @@ void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
 	float	y_step;
 	int		max;
 	int		z;
-	//int		z1;
-
+	
 	z = data->z_matrix[(int)y][(int)x];
-	//z1 = data->z_matrix[(int)y1][(int)x1];
 	//---------zoom------------
 	x *= data->zoom;
 	y *= data->zoom;
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 
+	//---------offset------------
+	x += data->offset;
+	y += data->offset;
+	x1 += data->offset;
+	y1 += data->offset;
+
 	//---------color--------
-	data->color = (z) ? 0xff0000 : 0xffffff;
+	data->color = (z) ? 0x0000ff : 0xffffff;
 
 	x_step = x1 - x;
 	y_step = y1 - y;
-	
 	max = MAX(MOD(x_step), MOD(y_step));
 	x_step = (x1 - x) / max;
 	y_step = (y1 - y) / max;
+
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
+		if (x >= 0 && y >= 0 && x < 1000 && y < 1000)
+			my_pixel_put(&data->img, x, y, data->color);
 		x += x_step;
 		y += y_step;
 	}
@@ -66,10 +71,11 @@ void	draw(t_fdf *data)
 		{
 			if (x < data->width - 1)
 				bresenham(x, y, x + 1, y, data);
-			if (x < data->height - 1)
+			if (y < data->height - 1)
 				bresenham(x, y, x, y + 1, data);
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
 }

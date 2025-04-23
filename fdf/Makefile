@@ -40,6 +40,8 @@ SRC = 	get_height.c \
 		main.c \
 		rasterization.c \
 		free_all.c \
+		my_pixel_put.c \
+		init.c \
 
 
 OBJ = $(SRC:.c=.o)

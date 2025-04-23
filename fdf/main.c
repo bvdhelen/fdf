@@ -47,17 +47,20 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
+	if (!data->mlx_ptr)
 		return (1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
-	data->zoom = 20;
-	if (data->win_ptr == NULL)
+	if (!data->win_ptr)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 		return (1);
 	}
+	data->zoom = 20;
+	data->offset = 200;
+	init_image(data, 1000, 1000);
 	draw(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
 	mlx_key_hook(data->win_ptr, handle_key, data);
 	mlx_loop(data->mlx_ptr);
 	free_all(data);

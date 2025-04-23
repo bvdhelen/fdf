@@ -31,7 +31,10 @@ void	free_all(t_fdf *data)
 {
 	if (!data)
 		return ;
-	free_matrix(data);
+	if (data->z_matrix)
+		free_matrix(data);
+	if (data->img.img_ptr)
+		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
