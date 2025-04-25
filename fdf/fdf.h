@@ -40,6 +40,8 @@ typedef struct s_fdf
 	int		zoom;
 	int		offset;
 	int		color;
+	int		shift_x;
+	int		shift_y;
 	t_img	img;
 
 	void	*mlx_ptr;

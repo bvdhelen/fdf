@@ -20,7 +20,21 @@ int	handle_key(int key, t_fdf *data)
 		free_all(data);
 		exit(0);
 	}
+	if (key == XK_a)
+		data->shift_x -= 10;
+	if (key == XK_s)
+		data->shift_y += 10;
+	if (key == XK_w)
+		data->shift_y -= 10;
+	if (key == XK_d)
+		data->shift_x += 10;
 	ft_printf("The %d key has been pressed\n\n", key);
+	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
+	init_image(data, 1000, 1000);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	draw(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.img_ptr, 0, 0);
 	return (0);
 }
 

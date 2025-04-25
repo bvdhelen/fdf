@@ -39,7 +39,7 @@ SRC = 	free.c \
 		get_width.c \
 		handle.c \
 		init.c \
-		my_pixel_put.c \
+		render.c \
 		rasterization.c \
 		read_file.c \
 		utils.c \
