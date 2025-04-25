@@ -12,61 +12,67 @@
 
 #include "fdf.h"
 
-#define MAX(a,b) (a > b ? a : b)
-#define MOD(a) ((a < 0) ? -a : a)
-
-float	mod(float i)
-{
-	return (i < 0) ? -i : i;
-}
-
 void	isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	float	temp_x;
+	float	temp_y;
+
+	temp_x = *x;
+	temp_y = *y;
+	*x = (temp_x - temp_y) * cos(0.8);
+	*y = (temp_x + temp_y) * sin(0.8) - z;
+}
+/*
+void	set_pixel_data(t_fdf *data, float *x, float *y, int *z, int *z1)
+{
+	
+	*z1 = data->z_matrix[yi][xi];
+	if (yi + 1 < data->height && xi + 1 < data->width)
+		*z1 = data->z_matrix[yi + 1][xi + 1];
+	
+	*x += data->offset;
+	*x += 150;
+	*y *= data->zoom;
+	*y += data->offset;
+}*/
+
+void	get_point_data(t_fdf *data, float *x, float *y, int *z)
+{
+	int	xi;
+	int	yi;
+
+	xi = (int)*x;
+	yi = (int)*y;
+	*z = data->z_matrix[yi][xi];
+	*x = *x * data->zoom + data->offset;
+	*y = *y * data->zoom + data->offset;
 }
 
-void	bresenham(float x, float y, float x1, float y1, t_fdf *data)
+void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 {
 	float	x_step;
 	float	y_step;
 	int		max;
 	int		z;
 	int		z1;
-	
-	z = data->z_matrix[(int)y][(int)x];
-	z1 = data->z_matrix[(int)y1][(int)x1];
-	//---------zoom------------
-	x *= data->zoom;
-	y *= data->zoom;
-	x1 *= data->zoom;
-	y1 *= data->zoom;
 
-	//---------offset------------
-	x += data->offset;
-	y += data->offset;
-	x1 += data->offset;
-	y1 += data->offset;
-
-	//---------color------------
-	data->color = (z || z1) ? 0x0000ff : 0xffffff;
-
-	//---------3D---------------
+	get_point_data(data, &x, &y, &z);
+	get_point_data(data, &x1, &y1, &z1);
 	isometric(&x, &y, z);
 	isometric(&x1, &y1, z1);
-
-	//---------shift-------------
 	x += 150;
 	y += 150;
 	x1 += 150;
 	y1 += 150;
-
+	if (z || z1)
+		data->color = 0x0000ff;
+	else
+		data->color = 0xffffff;
 	x_step = x1 - x;
 	y_step = y1 - y;
-	max = MAX(MOD(x_step), MOD(y_step));
-	x_step = (x1 - x) / max;
-	y_step = (y1 - y) / max;
-
+	max = ft_max(ft_abs(x_step), ft_abs(y_step));
+	x_step = x_step / max;
+	y_step = y_step / max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
 		if (x >= 0 && y >= 0 && x < 1000 && y < 1000)
@@ -88,12 +94,13 @@ void	draw(t_fdf *data)
 		while (x < data->width)
 		{
 			if (x < data->width - 1)
-				bresenham(x, y, x + 1, y, data);
+				bresenham(data, x, y, x + 1, y);
 			if (y < data->height - 1)
-				bresenham(x, y, x, y + 1, data);
+				bresenham(data, x, y, x, y + 1);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.img_ptr, 0, 0);
 }

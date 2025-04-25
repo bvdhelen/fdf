@@ -55,11 +55,21 @@ int		handle_key(int key, t_fdf *data);
 void	free_matrix(t_fdf *data);
 void	free_all(t_fdf *data);
 
-void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
+void	isometric(float *x, float *y, int z);
+void	get_point_data(t_fdf *data, float *x, float *y, int *z);
+void	bresenham(t_fdf *data, float x, float y, float x1, float y1);
 void	draw(t_fdf *data);
 
 void	my_pixel_put(t_img *img, int x, int y, int color);
 
+int		init_data(t_fdf **data, char *file_name);
+int		init_window(t_fdf *data);
 void	init_image(t_fdf *data, int width, int height);
+
+int		handle_event(t_fdf *data);
+int		handle_key(int key, t_fdf *data);
+
+float	ft_abs(float num);
+float	ft_max(float a, float b);
 
 #endif

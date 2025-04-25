@@ -34,15 +34,16 @@ WHITE = \033[0;37m
 RESET = \033[0m
 
 # Archivos fuente y archivos objeto
-SRC = 	get_height.c \
+SRC = 	free.c \
+		get_height.c \
 		get_width.c \
-		read_file.c \
-		main.c \
-		rasterization.c \
-		free.c \
-		my_pixel_put.c \
+		handle.c \
 		init.c \
-
+		my_pixel_put.c \
+		rasterization.c \
+		read_file.c \
+		utils.c \
+		main.c \
 
 OBJ = $(SRC:.c=.o)
 
