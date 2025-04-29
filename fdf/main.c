@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
 	data->zoom = 20;
 	data->offset = 200;
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
+	calculate_z_range(data, &data->z_min, &data->z_max);
 	calculate_center(data);
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,

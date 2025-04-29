@@ -47,6 +47,8 @@ typedef struct s_fdf
 	int		color;
 	int		shift_x;
 	int		shift_y;
+	int		z_min;
+	int		z_max;
 	t_img	img;
 
 	void	*mlx_ptr;
@@ -79,6 +81,9 @@ int		handle_key(int key, t_fdf *data);
 float	ft_abs(float num);
 float	ft_max(float a, float b);
 
+void	calculate_z_range(t_fdf *data, int *range_min, int *range_max);
 void	set_color(int z, t_fdf *data);
+int		get_color(int z, int range_min, int range_max);
+int		set_and_get_color(int z, t_fdf *data);
 
 #endif

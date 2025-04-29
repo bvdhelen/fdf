@@ -51,6 +51,7 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	int		max;
 	int		z;
 	int		z1;
+	int		color;
 
 	get_point_data(data, &x, &y, &z);
 	get_point_data(data, &x1, &y1, &z1);
@@ -60,8 +61,7 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	y += data->shift_y;
 	x1 += data->shift_x;
 	y1 += data->shift_y;
-	set_color(z, data);
-	set_color(z1, data);
+	color = set_and_get_color(z, data);
 	x_step = x1 - x;
 	y_step = y1 - y;
 	max = ft_max(ft_abs(x_step), ft_abs(y_step));
