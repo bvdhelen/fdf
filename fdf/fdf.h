@@ -79,4 +79,6 @@ int		handle_key(int key, t_fdf *data);
 float	ft_abs(float num);
 float	ft_max(float a, float b);
 
+void	set_color(int z, t_fdf *data);
+
 #endif

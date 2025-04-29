@@ -44,6 +44,7 @@ SRC = 	free.c \
 		read_file.c \
 		utils.c \
 		main.c \
+		color.c \
 
 OBJ = $(SRC:.c=.o)
 

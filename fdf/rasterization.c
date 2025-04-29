@@ -60,10 +60,8 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	y += data->shift_y;
 	x1 += data->shift_x;
 	y1 += data->shift_y;
-	if (z || z1)
-		data->color = 0x0000ff;
-	else
-		data->color = 0xffffff;
+	set_color(z, data);
+	set_color(z1, data);
 	x_step = x1 - x;
 	y_step = y1 - y;
 	max = ft_max(ft_abs(x_step), ft_abs(y_step));

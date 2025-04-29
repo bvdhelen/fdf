@@ -16,14 +16,17 @@ void	calculate_center(t_fdf *data)
 {
 	int		x;
 	int		y;
-	int		z;
 	float	proj_x;
 	float	proj_y;
-	float	min_x = FLOAT_MAX;
-	float	max_x = FLOAT_MIN;
-	float	min_y = FLOAT_MAX;
-	float	max_y = FLOAT_MIN;
+	float	min_x;
+	float	max_x;
+	float	min_y;
+	float	max_y;
 
+	min_x = FLOAT_MAX;
+	max_x = FLOAT_MIN;
+	min_y = FLOAT_MAX;
+	max_y = FLOAT_MIN;
 	y = 0;
 	while (y < data->height)
 	{
@@ -32,8 +35,7 @@ void	calculate_center(t_fdf *data)
 		{
 			proj_x = x * data->zoom + data->offset;
 			proj_y = y * data->zoom + data->offset;
-			z = data->z_matrix[y][x];
-			isometric(&proj_x, &proj_y, z);
+			isometric(&proj_x, &proj_y, data->z_matrix[y][x]);
 			if (proj_x < min_x)
 				min_x = proj_x;
 			if (proj_x > max_x)
