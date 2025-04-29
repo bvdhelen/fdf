@@ -21,8 +21,12 @@
 # include "../mlx_linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include <math.h>
-# include <float.h>
+# include <math.h> 
+
+# define FLOAT_MAX 3.402823466e+38F
+# define FLOAT_MIN -3.402823466e+38F
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
 typedef struct s_img
 {

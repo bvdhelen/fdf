@@ -12,6 +12,15 @@
 
 #include "fdf.h"
 
+void	my_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*offset;
+
+	offset = (img->img_pixels_ptr)
+		+ ((img->line_len * y) + (x * (img->bits_per_pixel / 8)));
+	*(unsigned int *)offset = color;
+}
+
 void	isometric(float *x, float *y, int z)
 {
 	float	temp_x;
@@ -62,7 +71,7 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	y_step = y_step / max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		if (x >= 0 && y >= 0 && x < 1000 && y < 1000)
+		if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 			my_pixel_put(&data->img, x, y, data->color);
 		x += x_step;
 		y += y_step;

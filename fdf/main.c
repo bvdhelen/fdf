@@ -19,10 +19,10 @@ void	calculate_center(t_fdf *data)
 	int		z;
 	float	proj_x;
 	float	proj_y;
-	float	min_x = FLT_MAX;
-	float	max_x = -FLT_MAX;
-	float	min_y = FLT_MAX;
-	float	max_y = -FLT_MAX;
+	float	min_x = FLOAT_MAX;
+	float	max_x = FLOAT_MIN;
+	float	min_y = FLOAT_MAX;
+	float	max_y = FLOAT_MIN;
 
 	y = 0;
 	while (y < data->height)
@@ -46,12 +46,8 @@ void	calculate_center(t_fdf *data)
 		}
 		y++;
 	}
-
-	float	map_width = max_x - min_x;
-	float	map_height = max_y - min_y;
-
-	data->shift_x = (1000 - map_width) / 2 - min_x;
-	data->shift_y = (1000 - map_height) / 2 - min_y;
+	data->shift_x = (WIN_WIDTH - (max_x - min_x)) / 2 - min_x;
+	data->shift_y = (WIN_HEIGHT - (max_y - min_y)) / 2 - min_y;
 }
 
 static int	validate_args(int argc, char **argv)
@@ -74,7 +70,7 @@ int	main(int argc, char **argv)
 		return (1);
 	data->zoom = 20;
 	data->offset = 200;
-	init_image(data, 1000, 1000);
+	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	calculate_center(data);
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,

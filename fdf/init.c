@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:33:19 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/04/24 12:47:08 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/29 20:10:09 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	init_window(t_fdf *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (0);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	if (!data->win_ptr)
 	{
 		mlx_destroy_display(data->mlx_ptr);

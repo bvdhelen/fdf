@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_pixel_put.c                                     :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:05:10 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/04/25 09:42:24 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/29 19:53:35 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	my_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*offset;
-
-	offset = (img->img_pixels_ptr)
-		+ ((img->line_len * y) + (x * (img->bits_per_pixel / 8)));
-	*(unsigned int *)offset = color;
-}
 
 void	draw(t_fdf *data)
 {
