@@ -51,7 +51,10 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	int		max;
 	int		z;
 	int		z1;
-	int		color;
+	int		color_start;
+	int		color_end;
+	int		step_count;
+	int		steps;
 
 	get_point_data(data, &x, &y, &z);
 	get_point_data(data, &x1, &y1, &z1);
@@ -61,17 +64,24 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	y += data->shift_y;
 	x1 += data->shift_x;
 	y1 += data->shift_y;
-	color = set_and_get_color(z, data);
+	color_start = get_color(z, data->z_min, data->z_max);
+	color_end = get_color(z1, data->z_min, data->z_max);
 	x_step = x1 - x;
 	y_step = y1 - y;
 	max = ft_max(ft_abs(x_step), ft_abs(y_step));
+	if (max == 0)
+		return ;
 	x_step = x_step / max;
 	y_step = y_step / max;
+	step_count = 0;
+	steps = max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
 		if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
-			my_pixel_put(&data->img, x, y, data->color);
+			my_pixel_put(&data->img, x, y,
+				get_current_color(color_start, color_end, step_count, steps));
 		x += x_step;
 		y += y_step;
+		step_count++;
 	}
 }

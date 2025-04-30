@@ -82,8 +82,11 @@ float	ft_abs(float num);
 float	ft_max(float a, float b);
 
 void	calculate_z_range(t_fdf *data, int *range_min, int *range_max);
-void	set_color(int z, t_fdf *data);
 int		get_color(int z, int range_min, int range_max);
-int		set_and_get_color(int z, t_fdf *data);
+
+int		get_current_color(int color_start, int color_end, int step_count, int steps);
+int		interpolate_blue(int start_color, int end_color, float percentage);
+int		interpolate_green(int start_color, int end_color, float percentage);
+int		interpolate_red(int start_color, int end_color, float percentage);
 
 #endif
