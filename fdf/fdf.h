@@ -27,6 +27,7 @@
 # define FLOAT_MIN -3.402823466e+38F
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
+# define PI 3.14159265358979
 
 typedef struct s_img
 {
@@ -43,7 +44,7 @@ typedef struct s_fdf
 	int		height;
 	int		**z_matrix;
 	int		zoom;
-	int		offset;
+	//int		offset;
 	int		color;
 	int		shift_x;
 	int		shift_y;
@@ -88,5 +89,10 @@ int		get_current_color(int color_start, int color_end, int step_count, int steps
 int		interpolate_blue(int start_color, int end_color, float percentage);
 int		interpolate_green(int start_color, int end_color, float percentage);
 int		interpolate_red(int start_color, int end_color, float percentage);
+
+void	render(t_fdf *data);
+void	ft_error(char *msg);
+void	set_default_values(t_fdf *data);
+void	calculate_center(t_fdf *data);
 
 #endif

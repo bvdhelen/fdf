@@ -33,8 +33,8 @@ void	calculate_center(t_fdf *data)
 		x = 0;
 		while (x < data->width)
 		{
-			proj_x = x * data->zoom + data->offset;
-			proj_y = y * data->zoom + data->offset;
+			proj_x = x * data->zoom;
+			proj_y = y * data->zoom;
 			isometric(&proj_x, &proj_y, data->z_matrix[y][x]);
 			if (proj_x < min_x)
 				min_x = proj_x;
@@ -70,8 +70,8 @@ int	main(int argc, char **argv)
 		|| !init_data(&data, argv[1])
 		|| !init_window(data))
 		return (1);
-	data->zoom = 20;
-	data->offset = 200;
+	set_default_values(data);
+	//data->offset = 200;
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	calculate_z_range(data, &data->z_min, &data->z_max);
 	calculate_center(data);

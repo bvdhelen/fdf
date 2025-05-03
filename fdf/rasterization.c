@@ -23,13 +23,22 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 void	isometric(float *x, float *y, int z)
 {
-	float	temp_x;
-	float	temp_y;
+	float	rot_display_x;
+	float	rot_display_y;
+	float	rot_x;
+	float	rot_y;
+	float	angle;
 
-	temp_x = *x;
-	temp_y = *y;
-	*x = (temp_x - temp_y) * cos(0.8);
-	*y = (temp_x + temp_y) * sin(0.8) - z;
+	(void)z;
+	angle = PI/4;
+	rot_display_x = *x;
+	rot_display_y = *y;
+	*x = (rot_display_x) * cos(angle) - (rot_display_y) * sin(angle);
+	*y = (rot_display_x) * sin(angle) + (rot_display_y) * cos(angle);
+	rot_x = *x;
+	rot_y = *y;
+	*x = (rot_x);
+	*y = (rot_y) * cos(angle) - z;
 }
 
 void	get_point_data(t_fdf *data, float *x, float *y, int *z)
@@ -40,8 +49,8 @@ void	get_point_data(t_fdf *data, float *x, float *y, int *z)
 	xi = (int)*x;
 	yi = (int)*y;
 	*z = data->z_matrix[yi][xi];
-	*x = *x * data->zoom + data->offset;
-	*y = *y * data->zoom + data->offset;
+	*x = *x * data->zoom;
+	*y = *y * data->zoom;
 }
 
 void	bresenham(t_fdf *data, float x, float y, float x1, float y1)

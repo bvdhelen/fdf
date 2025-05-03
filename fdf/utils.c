@@ -48,3 +48,23 @@ void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
 		y++;
 	}
 }
+
+void	set_default_values(t_fdf *data)
+{
+	data->zoom = 20;
+}
+
+//falta usarla
+void	ft_error(char *msg)
+{
+	ft_printf("%s\n", msg);
+	exit(1);
+}
+
+void	render(t_fdf *data)
+{
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	draw(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.img_ptr, 0, 0);
+}
