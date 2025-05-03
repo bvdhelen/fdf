@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:48:29 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/04/30 17:51:36 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/04 00:14:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	interpolate_blue(int start_color, int end_color, float percentage)
 	return ((int)(start_b + (end_b - start_b) * percentage));
 }
 
-int	get_current_color(int color_start, int color_end, int step_count, int steps)
+int	get_gradient_color(int color_start, int color_end, int step_count, int steps)
 {
 	float	percentage;
 	int		r;
@@ -77,7 +77,7 @@ int	get_current_color(int color_start, int color_end, int step_count, int steps)
 		percentage = 0;
 	if (percentage > 1)
 		percentage = 1;
-	percentage = percentage * percentage * (3 - 2 * percentage);
+	//percentage = percentage * percentage * (3 - 2 * percentage);
 	r = interpolate_red(color_start, color_end, percentage);
 	g = interpolate_green(color_start, color_end, percentage);
 	b = interpolate_blue(color_start, color_end, percentage);

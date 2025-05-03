@@ -88,7 +88,7 @@ void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
 	{
 		if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 			my_pixel_put(&data->img, x, y,
-				get_current_color(color_start, color_end, step_count, steps));
+				get_gradient_color(color_start, color_end, step_count, steps));
 		x += x_step;
 		y += y_step;
 		step_count++;
