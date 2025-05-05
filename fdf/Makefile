@@ -45,6 +45,7 @@ SRC = 	free.c \
 		utils.c \
 		main.c \
 		color.c \
+		centered.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -57,7 +58,7 @@ OBJ = $(SRC:.c=.o)
 
 # Regla para compilar fdf con libft, ft_printf y get_next_line
 # -C sirve para cambiar UNA VEZ al directorio especificado antes de ejecutar el Makefile
-$(NAME): header $(OBJ) header2
+$(NAME): header $(OBJ)
 	@make -C $(LIBFT_DIR) --no-print-directory
 	@make -C $(FT_PRINTF_DIR) --no-print-directory
 	@make -C $(GET_NEXT_LINE_DIR) --no-print-directory
@@ -94,6 +95,12 @@ fclean: clean
 
 re: fclean all
 
+norminette:
+	@norminette || true
+	@echo
+	@echo "$(GREEN)<<< norminette check OK >>>$(RESET)"
+	@echo
+
 # ASCII Art
 header:
 	@echo
@@ -108,55 +115,6 @@ header:
 	@echo " $(YELLOW) / .___/_/   \____/\__, /\___/\___/\__/  "
 	@echo " $(YELLOW)/_/               /____/                 "
 	@echo " $(MAGENTA) "
-	@echo
-	
-header2:
-	@echo "$(WHITE)"
-	@echo "                                                                                                    "
-	@echo "                                                                                                    "
-	@echo "                                       ░ ░░░░░░░░   ░░░░ ░░░░  ░                                    "
-	@echo "                                       ░░░░░░░░░░▒▒▒░░░░░░░░░░░░                                    "
-	@echo "                                    ░░░░▒▓█████████████████▓░░░░ ░░░                                "
-	@echo "                                 ░░░▒███▓▒░░░░░░░░░ ░░░░░░░▓████▓░░░                                "
-	@echo "                               ░░░▓██▓░░░░░░░░          ░ ░░░░░▓███▓░░ ░                            "
-	@echo "                              ░░▓██▒░░░                       ░░░░░▓██▓░░                           "
-	@echo "                           ░░░░▓█▓░░░░                             ░░▒██▓░░                         "
-	@echo "                            ░░░██░░                                 ░░░▒██░░░                       "
-	@echo "                            ░░██░░                                    ░░░▓█▒░░░                     "
-	@echo "                            ░░█▓░                                       ░░██▒░░                     "
-	@echo "                            ░▒█▒░                                       ░ ░██▒░                     "
-	@echo "                           ░░██░░                                          ▒██░                     "
-	@echo "                            ░██░                      ░░░░░░               ░██░░                    "
-	@echo "                            ░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░              ░▒█▓░░                   "
-	@echo "                            ░██░░░░▒███░░░░░░░░░░░░░░░░░▒███░░             ░░██░░                   "
-	@echo "                           ░░██░░░░░░░░░░▒████████████░░░░░░░░░             ░▒█▒                    "
-	@echo "                           ░░██░░░░░░░░░░░░                                  ░█▓░░                  "
-	@echo "                            ▒█▓░░░░                                          ░██░░                  "
-	@echo "                           ░▒█▓░░                                           ░░██▒░                  "
-	@echo "                           ░▓█░                                              ░▓█▒░                  "
-	@echo "                          ░░█▓░                                             ░░▒██░                  "
-	@echo "                          ░██░░░░                                       ░░ ░ ░░██░                  "
-	@echo "                        ░░▓█▓░░                                      ░░░░░░░█▒░██░                  "
-	@echo "                      ░░░▒██░░░                                     ░░██░░░░██░▓█▒░                 "
-	@echo "                      ░░▒██░░░░                                      ░▒█▒░░░██░░█▓░░░               "
-	@echo "                   ░░░░░██░░░                                        ░░██▒░░▓█▒░▓█░░░               "
-	@echo "                     ░░██░░░                                          ░▒█▓░░▓█░ ▒█▒░░               "
-	@echo "                      ▓█▒░                                           ░░░▓█▓▓██░░░██░░               "
-	@echo "                   ░░░██░░ ░                                          ░░░░▒▒░░░░░██░░               "
-	@echo "                  ░░░▒█▒░░                                              ░░ ░░░  ░██░░░              "
-	@echo "               ░    ░██░░░                                                      ░██░░░              "
-	@echo "               ░░░░░▒█▒░░                                                       ░██░░               "
-	@echo "            ░░░ ░▒▓███░░░░                                                     ░░██░░               "
-	@echo "             ░▓███▓░░░░░░░                                                     ░▒█▒░░               "
-	@echo "            ░▓█▒░░░░░░░░░░░░░                                       ░░░░░ ░░ ░░░██░░░               "
-	@echo "            ░▒█▓░░░░░░░░░░░░░░░░░░░  ░░░░                      ░    ░░░▓▓▓▒░░░░██░░░░               "
-	@echo "             ░▒███▓▓▓████████▓▓░░░░░░░░░░░░ ░░░░░░░    ░░░░░   ░░░░░░██▓▓▓█▓░░██░░░                 "
-	@echo "               ░░░▒▒░░░░░░░░░░▒██████████████████▓▒▒▒▒▒▒▒▒▓▓▓▓█████▓░░░░░░░░░▒█▒░░                  "
-	@echo "                 ░ ░░   ░░    ░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▓█▒░░░░░░░░█▓░░░                  "
-	@echo "                                              ░░  ░░░░       ░░░░░░▓█▓░░░░▒███░░░░                  "
-	@echo "                                                             ░░░░░░░░▓█████▒░░░░░                   "
-	@echo "                                                                    ░░░░░░░░                        "
-	@echo "                                                                       ░░░                          "
 	@echo
 
 # Indica que las siguientes reglas no son archivos reales

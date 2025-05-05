@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	handle_key(int key, t_fdf *data)
+void	key_imput(int key, t_fdf *data)
 {
 	if (key == XK_Escape)
 	{
@@ -29,22 +29,21 @@ int	handle_key(int key, t_fdf *data)
 	if (key == XK_d || key == XK_D)
 		data->shift_x += 10;
 	else if (key == XK_plus)
-	{
 		data->zoom += 1;
-		calculate_center(data);
-		render(data);
-	}
 	else if (key == XK_minus && data->zoom > 1)
-	{
 		data->zoom -= 1;
-		calculate_center(data);
-		render(data);
-	}
 	else if (key == XK_c || key == XK_C)
 	{
 		calculate_center(data);
+		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
+		init_image(data, WIN_WIDTH, WIN_HEIGHT);
 		render(data);
 	}
+}
+
+int	handle_key(int key, t_fdf *data)
+{
+	key_imput(key, data);
 	ft_printf("The %d key has been pressed\n\n", key);
 	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);

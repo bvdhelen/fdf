@@ -29,6 +29,14 @@
 # define WIN_HEIGHT 1000
 # define PI 3.14159265358979
 
+typedef struct s_bbox
+{
+	float	min_x;
+	float	max_x;
+	float	min_y;
+	float	max_y;
+}	t_bbox;
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -83,9 +91,13 @@ float	ft_abs(float num);
 float	ft_max(float a, float b);
 
 void	calculate_z_range(t_fdf *data, int *range_min, int *range_max);
+void	calculate_center(t_fdf *data);
+void	calculate_bounding_box(t_fdf *data, t_bbox *bbox);
+void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y);
+
 int		get_color(int z, int range_min, int range_max);
 
-int		get_gradient_color(int color_start, int color_end, int step_count, int steps);
+int		get_gradient_color(int start, int end, int step_count, int steps);
 int		interpolate_blue(int start_color, int end_color, float percentage);
 int		interpolate_green(int start_color, int end_color, float percentage);
 int		interpolate_red(int start_color, int end_color, float percentage);
@@ -93,6 +105,7 @@ int		interpolate_red(int start_color, int end_color, float percentage);
 void	render(t_fdf *data);
 void	ft_error(char *msg);
 void	set_default_values(t_fdf *data);
-void	calculate_center(t_fdf *data);
+
+void	key_imput(int key, t_fdf *data);
 
 #endif

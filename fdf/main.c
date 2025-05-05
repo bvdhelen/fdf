@@ -12,46 +12,6 @@
 
 #include "fdf.h"
 
-void	calculate_center(t_fdf *data)
-{
-	int		x;
-	int		y;
-	float	proj_x;
-	float	proj_y;
-	float	min_x;
-	float	max_x;
-	float	min_y;
-	float	max_y;
-
-	min_x = FLOAT_MAX;
-	max_x = FLOAT_MIN;
-	min_y = FLOAT_MAX;
-	max_y = FLOAT_MIN;
-	y = 0;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			proj_x = x * data->zoom;
-			proj_y = y * data->zoom;
-			isometric(&proj_x, &proj_y, data->z_matrix[y][x]);
-			if (proj_x < min_x)
-				min_x = proj_x;
-			if (proj_x > max_x)
-				max_x = proj_x;
-			if (proj_y < min_y)
-				min_y = proj_y;
-			if (proj_y > max_y)
-				max_y = proj_y;
-			x++;
-		}
-		y++;
-	}
-	data->shift_x = (WIN_WIDTH - (max_x - min_x)) / 2 - min_x;
-	data->shift_y = (WIN_HEIGHT - (max_y - min_y)) / 2 - min_y;
-}
-
 static int	validate_args(int argc, char **argv)
 {
 	if (argc != 2)
@@ -71,7 +31,6 @@ int	main(int argc, char **argv)
 		|| !init_window(data))
 		return (1);
 	set_default_values(data);
-	//data->offset = 200;
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	calculate_z_range(data, &data->z_min, &data->z_max);
 	calculate_center(data);

@@ -26,34 +26,6 @@ float	ft_max(float a, float b)
 	return (b);
 }
 
-void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
-{
-	int	x;
-	int	y;
-
-	*range_min = data->z_matrix[0][0];
-	*range_max = data->z_matrix[0][0];
-	y = 0;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			if (data->z_matrix[y][x] < *range_min)
-				*range_min = data->z_matrix[y][x];
-			if (data->z_matrix[y][x] > *range_max)
-				*range_max = data->z_matrix[y][x];
-			x++;
-		}
-		y++;
-	}
-}
-
-void	set_default_values(t_fdf *data)
-{
-	data->zoom = 20;
-}
-
 //falta usarla
 void	ft_error(char *msg)
 {

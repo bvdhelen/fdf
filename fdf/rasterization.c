@@ -30,7 +30,7 @@ void	isometric(float *x, float *y, int z)
 	float	angle;
 
 	(void)z;
-	angle = PI/4;
+	angle = PI / 4;
 	rot_display_x = *x;
 	rot_display_y = *y;
 	*x = (rot_display_x) * cos(angle) - (rot_display_y) * sin(angle);
@@ -48,7 +48,7 @@ void	get_point_data(t_fdf *data, float *x, float *y, int *z)
 
 	xi = (int)*x;
 	yi = (int)*y;
-	*z = data->z_matrix[yi][xi];
+	*z = data->z_matrix[yi][xi] * data->zoom;
 	*x = *x * data->zoom;
 	*y = *y * data->zoom;
 }
