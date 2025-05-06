@@ -29,6 +29,28 @@
 # define WIN_HEIGHT 1000
 # define PI 3.14159265358979
 
+//puntos
+typedef struct s_point
+{
+	float	x;
+	float	y;
+}	t_point;
+
+//bresenham
+typedef struct s_bresenham
+{
+	float	x_step;
+	float	y_step;
+	int		z;
+	int		z1;
+	int		color_start;
+	int		color_end;
+	int		step_count;
+	int		steps;
+	int		max;
+}	t_bresenham;
+
+//bounding box
 typedef struct s_bbox
 {
 	float	min_x;
@@ -37,6 +59,7 @@ typedef struct s_bbox
 	float	max_y;
 }	t_bbox;
 
+//imagen
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -46,6 +69,7 @@ typedef struct s_img
 	int		line_len;
 }	t_img;
 
+//fdf
 typedef struct s_fdf
 {
 	int		width;
@@ -75,7 +99,8 @@ void	free_all(t_fdf *data);
 
 void	isometric(float *x, float *y, int z);
 void	get_point_data(t_fdf *data, float *x, float *y, int *z);
-void	bresenham(t_fdf *data, float x, float y, float x1, float y1);
+
+void	bresenham(t_fdf *data, t_point p0, t_point p1);
 void	draw(t_fdf *data);
 
 void	my_pixel_put(t_img *img, int x, int y, int color);

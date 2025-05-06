@@ -12,35 +12,6 @@
 
 #include "fdf.h"
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*offset;
-
-	offset = (img->img_pixels_ptr)
-		+ ((img->line_len * y) + (x * (img->bits_per_pixel / 8)));
-	*(unsigned int *)offset = color;
-}
-
-void	isometric(float *x, float *y, int z)
-{
-	float	rot_display_x;
-	float	rot_display_y;
-	float	rot_x;
-	float	rot_y;
-	float	angle;
-
-	(void)z;
-	angle = PI / 4;
-	rot_display_x = *x;
-	rot_display_y = *y;
-	*x = (rot_display_x) * cos(angle) - (rot_display_y) * sin(angle);
-	*y = (rot_display_x) * sin(angle) + (rot_display_y) * cos(angle);
-	rot_x = *x;
-	rot_y = *y;
-	*x = (rot_x);
-	*y = (rot_y) * cos(angle) - z;
-}
-
 void	get_point_data(t_fdf *data, float *x, float *y, int *z)
 {
 	int	xi;
@@ -53,44 +24,48 @@ void	get_point_data(t_fdf *data, float *x, float *y, int *z)
 	*y = *y * data->zoom;
 }
 
-void	bresenham(t_fdf *data, float x, float y, float x1, float y1)
+static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
-	float	x_step;
-	float	y_step;
-	int		max;
-	int		z;
-	int		z1;
-	int		color_start;
-	int		color_end;
-	int		step_count;
-	int		steps;
-
-	get_point_data(data, &x, &y, &z);
-	get_point_data(data, &x1, &y1, &z1);
-	isometric(&x, &y, z);
-	isometric(&x1, &y1, z1);
-	x += data->shift_x;
-	y += data->shift_y;
-	x1 += data->shift_x;
-	y1 += data->shift_y;
-	color_start = get_color(z, data->z_min, data->z_max);
-	color_end = get_color(z1, data->z_min, data->z_max);
-	x_step = x1 - x;
-	y_step = y1 - y;
-	max = ft_max(ft_abs(x_step), ft_abs(y_step));
-	if (max == 0)
+	get_point_data(data, &p0->x, &p0->y, &bres->z);
+	get_point_data(data, &p1->x, &p1->y, &bres->z1);
+	isometric(&p0->x, &p0->y, bres->z);
+	isometric(&p1->x, &p1->y, bres->z1);
+	p0->x += data->shift_x;
+	p0->y += data->shift_y;
+	p1->x += data->shift_x;
+	p1->y += data->shift_y;
+	bres->color_start = get_color(bres->z, data->z_min, data->z_max);
+	bres->color_end = get_color(bres->z1, data->z_min, data->z_max);
+	bres->x_step = p1->x - p0->x;
+	bres->y_step = p1->y - p0->y;
+	bres->max = ft_max(ft_abs(bres->x_step), ft_abs(bres->y_step));
+	if (bres->max == 0)
 		return ;
-	x_step = x_step / max;
-	y_step = y_step / max;
-	step_count = 0;
-	steps = max;
-	while ((int)(x - x1) || (int)(y - y1))
+	bres->x_step /= bres->max;
+	bres->y_step /= bres->max;
+	bres->step_count = 0;
+	bres->steps = bres->max;
+}
+
+static void	draw_bres(t_fdf *data, t_point p0, t_point p1, t_bresenham bres)
+{
+	while ((int)(p0.x - p1.x) || (int)(p0.y - p1.y))
 	{
-		if (x >= 0 && y >= 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
-			my_pixel_put(&data->img, x, y,
-				get_gradient_color(color_start, color_end, step_count, steps));
-		x += x_step;
-		y += y_step;
-		step_count++;
+		if (p0.x >= 0 && p0.y >= 0 && p0.x < WIN_WIDTH && p0.y < WIN_HEIGHT)
+			my_pixel_put(&data->img, p0.x, p0.y,
+				get_gradient_color(bres.color_start, bres.color_end,
+					bres.step_count, bres.steps));
+		p0.x += bres.x_step;
+		p0.y += bres.y_step;
+		bres.step_count++;
 	}
+}
+
+void	bresenham(t_fdf *data, t_point p0, t_point p1)
+{
+	t_bresenham	bres;
+
+	init_bres(data, &p0, &p1, &bres);
+	if (bres.max > 0)
+		draw_bres(data, p0, p1, bres);
 }

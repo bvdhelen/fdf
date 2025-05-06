@@ -46,6 +46,7 @@ SRC = 	free.c \
 		main.c \
 		color.c \
 		centered.c \
+		projections.c \
 
 OBJ = $(SRC:.c=.o)
 
