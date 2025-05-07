@@ -24,7 +24,10 @@ static int	alloc_z_matrix(t_fdf *data)
 	{
 		data->z_matrix[i] = (int *)malloc(sizeof(int) * data->width);
 		if (!data->z_matrix[i])
+		{
+			free_matrix(data);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -67,6 +70,7 @@ static void	fill_z_matrix(int fd, t_fdf *data)
 		line = get_next_line(fd);
 		i++;
 	}
+	free(line);
 }
 
 void	read_file(char *file_name, t_fdf *data)
