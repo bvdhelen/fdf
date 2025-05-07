@@ -47,6 +47,7 @@ SRC = 	free.c \
 		color.c \
 		centered.c \
 		projections.c \
+		menu.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -75,8 +75,8 @@ typedef struct s_fdf
 	int		width;
 	int		height;
 	int		**z_matrix;
+	//int		z_height;
 	int		zoom;
-	//int		offset;
 	int		color;
 	int		shift_x;
 	int		shift_y;
@@ -109,8 +109,10 @@ int		init_data(t_fdf **data, char *file_name);
 int		init_window(t_fdf *data);
 void	init_image(t_fdf *data, int width, int height);
 
+void	key_imput(int key, t_fdf *data);
 int		handle_event(t_fdf *data);
 int		handle_key(int key, t_fdf *data);
+int		handle_mouse(int button, int x, int y, t_fdf *data);
 
 float	ft_abs(float num);
 float	ft_max(float a, float b);
@@ -132,5 +134,7 @@ void	ft_error(char *msg);
 void	set_default_values(t_fdf *data);
 
 void	key_imput(int key, t_fdf *data);
+
+void	display_instructions(t_fdf *data);
 
 #endif

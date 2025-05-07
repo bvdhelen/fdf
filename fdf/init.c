@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:33:19 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/05 14:02:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/07 21:03:33 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	init_window(t_fdf *data)
 
 void	init_image(t_fdf *data, int width, int height)
 {
+	if (data->img.img_ptr)
+		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	data->img.img_ptr = mlx_new_image(data->mlx_ptr, width, height);
 	if (!data->img.img_ptr)
 	{
