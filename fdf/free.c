@@ -12,7 +12,24 @@
 
 #include "fdf.h"
 
-void	free_matrix(t_fdf *data)
+//color_matrix
+void	free_color_matrix(t_fdf *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data->color_matrix)
+		return ;
+	while (i < data->height)
+	{
+		free(data->color_matrix[i]);
+		i++;
+	}
+	free(data->color_matrix);
+}
+
+//z_matrix
+void	free_z_matrix(t_fdf *data)
 {
 	int	i;
 
@@ -32,7 +49,9 @@ void	free_all(t_fdf *data)
 	if (!data)
 		return ;
 	if (data->z_matrix)
-		free_matrix(data);
+		free_z_matrix(data);
+	if (data->color_matrix)
+		free_color_matrix(data);
 	if (data->img.img_ptr)
 		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	if (data->win_ptr)

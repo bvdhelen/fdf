@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 		|| !init_data(&data, argv[1])
 		|| !init_window(data))
 		return (1);
-	set_default_values(data);
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	calculate_z_range(data, &data->z_min, &data->z_max);
 	calculate_center(data);

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	get_point_data(t_fdf *data, float *x, float *y, int *z)
+void	get_point_data_color(t_fdf *data, float *x, float *y, int *z, int *color)
 {
 	int	xi;
 	int	yi;
@@ -20,22 +20,22 @@ void	get_point_data(t_fdf *data, float *x, float *y, int *z)
 	xi = (int)*x;
 	yi = (int)*y;
 	*z = data->z_matrix[yi][xi] * data->zoom;
+	*color = data->color_matrix[yi][xi];
 	*x = *x * data->zoom;
 	*y = *y * data->zoom;
 }
 
 static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
-	get_point_data(data, &p0->x, &p0->y, &bres->z);
-	get_point_data(data, &p1->x, &p1->y, &bres->z1);
+	
+	get_point_data_color(data, &p0->x, &p0->y, &bres->z, &bres->color_start);
+	get_point_data_color(data, &p1->x, &p1->y, &bres->z1, &bres->color_end);
 	isometric(&p0->x, &p0->y, bres->z);
 	isometric(&p1->x, &p1->y, bres->z1);
 	p0->x += data->shift_x;
 	p0->y += data->shift_y;
 	p1->x += data->shift_x;
 	p1->y += data->shift_y;
-	bres->color_start = get_color(bres->z, data->z_min, data->z_max);
-	bres->color_end = get_color(bres->z1, data->z_min, data->z_max);
 	bres->x_step = p1->x - p0->x;
 	bres->y_step = p1->y - p0->y;
 	bres->max = ft_max(ft_abs(bres->x_step), ft_abs(bres->y_step));

@@ -75,7 +75,7 @@ typedef struct s_fdf
 	int		width;
 	int		height;
 	int		**z_matrix;
-	//int		z_height;
+	int		**color_matrix;
 	int		zoom;
 	int		color;
 	int		shift_x;
@@ -94,7 +94,8 @@ void	read_file(char *file_name, t_fdf *data);
 
 int		handle_key(int key, t_fdf *data);
 
-void	free_matrix(t_fdf *data);
+void	free_color_matrix(t_fdf *data);
+void	free_z_matrix(t_fdf *data);
 void	free_all(t_fdf *data);
 
 void	isometric(float *x, float *y, int z);
@@ -136,5 +137,6 @@ void	set_default_values(t_fdf *data);
 void	key_imput(int key, t_fdf *data);
 
 void	display_instructions(t_fdf *data);
+int		ft_hex_to_int(const char *hex);
 
 #endif
