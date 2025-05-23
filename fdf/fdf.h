@@ -80,8 +80,8 @@ typedef struct s_fdf
 	int		color;
 	int		shift_x;
 	int		shift_y;
-	int		z_min;
-	int		z_max;
+	//int		z_min;
+	//int		z_max;
 	t_img	img;
 
 	void	*mlx_ptr;

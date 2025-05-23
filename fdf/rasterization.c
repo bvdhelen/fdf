@@ -12,6 +12,8 @@
 
 #include "fdf.h"
 
+//valores de pixel de *z, *x, *y que se mantienen con el zoom y 
+//los de la z se multiplican por un factor de escala constante
 void	get_point_data_color(t_fdf *data, float *x, float *y, int *z, int *color)
 {
 	int	xi;
@@ -19,7 +21,7 @@ void	get_point_data_color(t_fdf *data, float *x, float *y, int *z, int *color)
 
 	xi = (int)*x;
 	yi = (int)*y;
-	*z = data->z_matrix[yi][xi] * data->zoom;
+	*z = (data->z_matrix[yi][xi] * data->zoom) * 0.1;
 	*color = data->color_matrix[yi][xi];
 	*x = *x * data->zoom;
 	*y = *y * data->zoom;
@@ -27,7 +29,6 @@ void	get_point_data_color(t_fdf *data, float *x, float *y, int *z, int *color)
 
 static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
-	
 	get_point_data_color(data, &p0->x, &p0->y, &bres->z, &bres->color_start);
 	get_point_data_color(data, &p1->x, &p1->y, &bres->z1, &bres->color_end);
 	isometric(&p0->x, &p0->y, bres->z);

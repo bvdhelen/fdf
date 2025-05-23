@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/* ESTO NO HACE ABSOLUTAMENTE NADA, PERO ERA PARA CALCULAR EL NUMERO DE PASOS DEL GRADIENTE DE COLOR
 void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
 {
 	int	x;
@@ -34,6 +34,7 @@ void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
 		y++;
 	}
 }
+*/
 
 void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y)
 {
