@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-/* ESTO NO HACE ABSOLUTAMENTE NADA, PERO ERA PARA CALCULAR EL NUMERO DE PASOS DEL GRADIENTE DE COLOR
+/* ERA PARA CALCULAR EL NUMERO DE PASOS DEL GRADIENTE DE COLOR
 void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
 {
 	int	x;

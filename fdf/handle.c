@@ -56,7 +56,7 @@ int	handle_event(t_fdf *data)
 	exit(0);
 	return (0);
 }
-
+/*
 int	handle_mouse(int button, int x, int y, t_fdf *data)
 {
 	(void)x;
@@ -86,3 +86,4 @@ int	handle_mouse(int button, int x, int y, t_fdf *data)
 	display_instructions(data);
 	return (0);
 }
+*/

@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 		|| !init_window(data))
 		return (1);
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
-	//calculate_z_range(data, &data->z_min, &data->z_max);
 	calculate_center(data);
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
@@ -39,8 +38,6 @@ int	main(int argc, char **argv)
 	display_instructions(data);
 	mlx_key_hook(data->win_ptr, handle_key, data);
 	mlx_hook(data->win_ptr, 17, 0, handle_event, data);
-	//mlx_hook(data->win_ptr,
-		//ButtonPress, ButtonPressMask, &handle_mouse, &data);
 	mlx_loop(data->mlx_ptr);
 	free_all(data);
 	return (0);

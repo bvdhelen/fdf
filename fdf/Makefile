@@ -48,6 +48,7 @@ SRC = 	free.c \
 		centered.c \
 		projections.c \
 		menu.c \
+		alloc_matrices.c \
 
 OBJ = $(SRC:.c=.o)
 

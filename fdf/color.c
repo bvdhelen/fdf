@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:48:29 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/07 21:05:04 by eldiaz-c         ###   ########.fr       */
+/*   Updated: 2025/05/27 19:39:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 int	get_color(int z, int range_min, int range_max)
 {
 	float	percentage;
@@ -33,7 +33,7 @@ int	get_color(int z, int range_min, int range_max)
 	blue = (int)((1 - percentage) * (start_color & 0xFF)
 			+ percentage * (end_color & 0xFF));
 	return ((red << 16) | (green << 8) | blue);
-}
+}*/
 
 int	interpolate_red(int start_color, int end_color, float percentage)
 {

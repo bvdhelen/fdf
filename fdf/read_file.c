@@ -12,50 +12,6 @@
 
 #include "fdf.h"
 
-static int	alloc_color_matrix(t_fdf *data)
-{
-	int	i;
-
-	data->color_matrix = (int **)malloc(sizeof(int *) * data->height);
-	if (!data->color_matrix)
-		return (0);
-	i = 0;
-	while (i < data->height)
-	{
-		data->color_matrix[i] = (int *)malloc(sizeof(int) * data->width);
-		if (!data->color_matrix[i])
-		{
-			ft_printf("Error al reservar memoria.\n");
-			free_color_matrix(data);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-static int	alloc_z_matrix(t_fdf *data)
-{
-	int	i;
-
-	data->z_matrix = (int **)malloc(sizeof(int *) * data->height);
-	if (!data->z_matrix)
-		return (0);
-	i = 0;
-	while (i < data->height)
-	{
-		data->z_matrix[i] = (int *)malloc(sizeof(int) * data->width);
-		if (!data->z_matrix[i])
-		{
-			ft_printf("Error al reservar memoria.\n");
-			free_z_matrix(data);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 void	parse_nums_and_color(const char *str, int *z, int *color)
 {
 	char	*comma;
@@ -78,7 +34,7 @@ void	parse_nums_and_color(const char *str, int *z, int *color)
 	}
 }
 
-static void	fill_matrix_with_colors(int *z_line, int *color_line, char *line, int width)
+static void	fill_matrix(int *z_line, int *color_line, char *line, int width)
 {
 	char	**nums;
 	int		i;
@@ -101,32 +57,7 @@ static void	fill_matrix_with_colors(int *z_line, int *color_line, char *line, in
 	free(nums);
 }
 
-//esta no se va a llamar
-/*static void	fill_matrix(int *z_line, char *line, int width)
-{
-	char	**nums;
-	int		i;
-
-	nums = ft_split(line, ' ');
-	if (!nums)
-		return ;
-	i = 0;
-	while (nums[i] && i < width)
-	{
-		z_line[i] = ft_atoi(nums[i]);
-		i++;
-	}
-	i = 0;
-	while (nums[i])
-	{
-		free(nums[i]);
-		i++;
-	}
-	free(nums);
-}*/
-
-//fill_z_matrix antes
-static void	fill_matrices(int fd, t_fdf *data)
+static void	read_and_fill_matrices(int fd, t_fdf *data)
 {
 	int		i;
 	char	*line;
@@ -135,7 +66,8 @@ static void	fill_matrices(int fd, t_fdf *data)
 	line = get_next_line(fd);
 	while (line && i < data->height)
 	{
-		fill_matrix_with_colors(data->z_matrix[i], data->color_matrix[i], line, data->width);
+		fill_matrix(data->z_matrix[i], data->color_matrix[i],
+			line, data->width);
 		free(line);
 		line = get_next_line(fd);
 		i++;
@@ -156,6 +88,6 @@ void	read_file(char *file_name, t_fdf *data)
 	fd = open(file_name, O_RDONLY, 0);
 	if (fd < 0)
 		return ;
-	fill_matrices(fd, data);
+	read_and_fill_matrices(fd, data);
 	close(fd);
 }

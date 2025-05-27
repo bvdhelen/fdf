@@ -34,6 +34,8 @@ typedef struct s_point
 {
 	float	x;
 	float	y;
+	int		z;
+	int		color;
 }	t_point;
 
 //bresenham
@@ -41,10 +43,6 @@ typedef struct s_bresenham
 {
 	float	x_step;
 	float	y_step;
-	int		z;
-	int		z1;
-	int		color_start;
-	int		color_end;
 	int		step_count;
 	int		steps;
 	int		max;
@@ -80,8 +78,6 @@ typedef struct s_fdf
 	int		color;
 	int		shift_x;
 	int		shift_y;
-	//int		z_min;
-	//int		z_max;
 	t_img	img;
 
 	void	*mlx_ptr;
@@ -99,7 +95,7 @@ void	free_z_matrix(t_fdf *data);
 void	free_all(t_fdf *data);
 
 void	isometric(float *x, float *y, int z);
-void	get_point_data(t_fdf *data, float *x, float *y, int *z);
+void	get_point_data(t_fdf *data, t_point *point);
 
 void	bresenham(t_fdf *data, t_point p0, t_point p1);
 void	draw(t_fdf *data);
@@ -138,5 +134,8 @@ void	key_imput(int key, t_fdf *data);
 
 void	display_instructions(t_fdf *data);
 int		ft_hex_to_int(const char *hex);
+
+int		alloc_color_matrix(t_fdf *data);
+int		alloc_z_matrix(t_fdf *data);
 
 #endif
