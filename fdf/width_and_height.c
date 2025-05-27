@@ -49,3 +49,24 @@ int	get_width(char *file_name)
 	close(fd);
 	return (width);
 }
+
+int	get_height(char *file_name)
+{
+	char	*line;
+	int		fd;
+	int		height;
+
+	fd = open(file_name, O_RDONLY, 0);
+	if (fd < 0)
+		return (-1);
+	height = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		height++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (height);
+}

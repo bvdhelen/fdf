@@ -34,21 +34,20 @@ WHITE = \033[0;37m
 RESET = \033[0m
 
 # Archivos fuente y archivos objeto
-SRC = 	free.c \
-		get_height.c \
-		get_width.c \
+SRC = 	alloc_matrices.c \
+		centered.c \
+		color.c \
+		draw.c \
+		free.c \
 		handle.c \
 		init.c \
-		render.c \
+		main.c \
+		menu.c \
+		projections.c \
 		rasterization.c \
 		read_file.c \
 		utils.c \
-		main.c \
-		color.c \
-		centered.c \
-		projections.c \
-		menu.c \
-		alloc_matrices.c \
+		width_and_height.c \
 
 OBJ = $(SRC:.c=.o)
 

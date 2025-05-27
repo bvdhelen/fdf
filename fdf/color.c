@@ -6,34 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:48:29 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/27 19:39:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/27 20:30:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-/*
-int	get_color(int z, int range_min, int range_max)
-{
-	float	percentage;
-	int		start_color;
-	int		end_color;
-	int		red;
-	int		green;
-	int		blue;
-
-	start_color = 0x0000FF;
-	end_color = 0xFFFFFF;
-	if (range_max == range_min)
-		return (start_color);
-	percentage = (float)(z - range_min) / (range_max - range_min);
-	red = (int)((1 - percentage) * ((start_color >> 16) & 0xFF)
-			+ percentage * ((end_color >> 16) & 0xFF));
-	green = (int)((1 - percentage) * ((start_color >> 8) & 0xFF)
-			+ percentage * ((end_color >> 8) & 0xFF));
-	blue = (int)((1 - percentage) * (start_color & 0xFF)
-			+ percentage * (end_color & 0xFF));
-	return ((red << 16) | (green << 8) | blue);
-}*/
 
 int	interpolate_red(int start_color, int end_color, float percentage)
 {

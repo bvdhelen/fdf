@@ -12,28 +12,6 @@
 
 #include "fdf.h"
 
-int	alloc_color_matrix(t_fdf *data)
-{
-	int	i;
-
-	data->color_matrix = (int **)malloc(sizeof(int *) * data->height);
-	if (!data->color_matrix)
-		return (0);
-	i = 0;
-	while (i < data->height)
-	{
-		data->color_matrix[i] = (int *)malloc(sizeof(int) * data->width);
-		if (!data->color_matrix[i])
-		{
-			ft_printf("Error al reservar memoria.\n");
-			free_color_matrix(data);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 int	alloc_z_matrix(t_fdf *data)
 {
 	int	i;
@@ -49,6 +27,28 @@ int	alloc_z_matrix(t_fdf *data)
 		{
 			ft_printf("Error al reservar memoria.\n");
 			free_z_matrix(data);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	alloc_color_matrix(t_fdf *data)
+{
+	int	i;
+
+	data->color_matrix = (int **)malloc(sizeof(int *) * data->height);
+	if (!data->color_matrix)
+		return (0);
+	i = 0;
+	while (i < data->height)
+	{
+		data->color_matrix[i] = (int *)malloc(sizeof(int) * data->width);
+		if (!data->color_matrix[i])
+		{
+			ft_printf("Error al reservar memoria.\n");
+			free_color_matrix(data);
 			return (0);
 		}
 		i++;

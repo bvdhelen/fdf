@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	parse_nums_and_color(const char *str, int *z, int *color)
+static void	parse_nums_and_color(const char *str, int *z, int *color)
 {
 	char	*comma;
 	char	*num;

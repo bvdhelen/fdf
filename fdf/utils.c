@@ -12,6 +12,13 @@
 
 #include "fdf.h"
 
+//falta usarla
+void	ft_error(char *msg)
+{
+	ft_printf("%s\n", msg);
+	exit(1);
+}
+
 float	ft_abs(float num)
 {
 	if (num < 0)
@@ -24,21 +31,6 @@ float	ft_max(float a, float b)
 	if (a > b)
 		return (a);
 	return (b);
-}
-
-//falta usarla
-void	ft_error(char *msg)
-{
-	ft_printf("%s\n", msg);
-	exit(1);
-}
-
-void	render(t_fdf *data)
-{
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	draw(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->img.img_ptr, 0, 0);
 }
 
 int	ft_hex_to_int(const char *hex)

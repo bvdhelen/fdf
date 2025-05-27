@@ -84,58 +84,49 @@ typedef struct s_fdf
 	void	*win_ptr;
 }	t_fdf;
 
-int		get_height(char *file_name);
-int		get_width(char *file_name);
-void	read_file(char *file_name, t_fdf *data);
+int		alloc_z_matrix(t_fdf *data);
+int		alloc_color_matrix(t_fdf *data);
 
-int		handle_key(int key, t_fdf *data);
+void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y);
+void	calculate_bounding_box(t_fdf *data, t_bbox *bbox);
+void	calculate_center(t_fdf *data);
 
-void	free_color_matrix(t_fdf *data);
-void	free_z_matrix(t_fdf *data);
-void	free_all(t_fdf *data);
+int		interpolate_red(int start_color, int end_color, float percentage);
+int		interpolate_green(int start_color, int end_color, float percentage);
+int		interpolate_blue(int start_color, int end_color, float percentage);
+int		get_gradient_color(int start, int end, int step_count, int steps);
 
-void	isometric(float *x, float *y, int z);
-void	get_point_data(t_fdf *data, t_point *point);
-
-void	bresenham(t_fdf *data, t_point p0, t_point p1);
 void	draw(t_fdf *data);
 
-void	my_pixel_put(t_img *img, int x, int y, int color);
+void	free_z_matrix(t_fdf *data);
+void	free_color_matrix(t_fdf *data);
+void	free_all(t_fdf *data);
 
+void	key_imput(int key, t_fdf *data);
+int		handle_key(int key, t_fdf *data);
+int		handle_event(t_fdf *data);
+
+void	set_default_values(t_fdf *data);
 int		init_data(t_fdf **data, char *file_name);
 int		init_window(t_fdf *data);
 void	init_image(t_fdf *data, int width, int height);
 
-void	key_imput(int key, t_fdf *data);
-int		handle_event(t_fdf *data);
-int		handle_key(int key, t_fdf *data);
-int		handle_mouse(int button, int x, int y, t_fdf *data);
+void	display_instructions(t_fdf *data);
 
+void	my_pixel_put(t_img *img, int x, int y, int color);
+void	isometric(float *x, float *y, int z);
+
+void	get_point_data(t_fdf *data, t_point *point);
+void	bresenham(t_fdf *data, t_point p0, t_point p1);
+
+void	read_file(char *file_name, t_fdf *data);
+
+void	ft_error(char *msg);
 float	ft_abs(float num);
 float	ft_max(float a, float b);
-
-void	calculate_z_range(t_fdf *data, int *range_min, int *range_max);
-void	calculate_center(t_fdf *data);
-void	calculate_bounding_box(t_fdf *data, t_bbox *bbox);
-void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y);
-
-int		get_color(int z, int range_min, int range_max);
-
-int		get_gradient_color(int start, int end, int step_count, int steps);
-int		interpolate_blue(int start_color, int end_color, float percentage);
-int		interpolate_green(int start_color, int end_color, float percentage);
-int		interpolate_red(int start_color, int end_color, float percentage);
-
-void	render(t_fdf *data);
-void	ft_error(char *msg);
-void	set_default_values(t_fdf *data);
-
-void	key_imput(int key, t_fdf *data);
-
-void	display_instructions(t_fdf *data);
 int		ft_hex_to_int(const char *hex);
 
-int		alloc_color_matrix(t_fdf *data);
-int		alloc_z_matrix(t_fdf *data);
+int		get_width(char *file_name);
+int		get_height(char *file_name);
 
 #endif

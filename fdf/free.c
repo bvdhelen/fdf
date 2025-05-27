@@ -12,23 +12,6 @@
 
 #include "fdf.h"
 
-//color_matrix
-void	free_color_matrix(t_fdf *data)
-{
-	int	i;
-
-	i = 0;
-	if (!data->color_matrix)
-		return ;
-	while (i < data->height)
-	{
-		free(data->color_matrix[i]);
-		i++;
-	}
-	free(data->color_matrix);
-}
-
-//z_matrix
 void	free_z_matrix(t_fdf *data)
 {
 	int	i;
@@ -42,6 +25,21 @@ void	free_z_matrix(t_fdf *data)
 		i++;
 	}
 	free(data->z_matrix);
+}
+
+void	free_color_matrix(t_fdf *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data->color_matrix)
+		return ;
+	while (i < data->height)
+	{
+		free(data->color_matrix[i]);
+		i++;
+	}
+	free(data->color_matrix);
 }
 
 void	free_all(t_fdf *data)
