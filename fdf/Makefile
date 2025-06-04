@@ -6,7 +6,7 @@ CC = cc
 FLAGS_1 = -Wall -Werror -Wextra -g
 FLAGS_2 = -Imlx_linux -O3
 
-# Linkeo??
+# Linkeo
 LINK = -L../mlx_linux -l:libmlx.a -lXext -lX11 -lm -lz
 
 # Rutas de bibliotecas auxiliares
@@ -119,5 +119,19 @@ header:
 	@echo " $(MAGENTA) "
 	@echo
 
+#header:
+#	@echo
+#	@echo " $(YELLOW)                  ____    ______       "
+#	@echo " $(YELLOW)                 / __/___/ / __/       "
+#	@echo " $(YELLOW)                / /_/ __  / /_         "
+#	@echo " $(YELLOW)               / __/ /_/ / __/         "
+#	@echo " $(YELLOW)              /_/  \__,_/_/         __ "
+#	@echo " $(YELLOW)    ____  _________    (_)__  _____/ /_"
+#	@echo " $(YELLOW)   / __ \/ ___/ __ \  / / _ \/ ___/ __/"
+#	@echo " $(YELLOW)  / /_/ / /  / /_/ / / /  __/ /__/ /_  "
+#	@echo " $(YELLOW) / .___/_/   \____/_/ /\___/\___/\__/  "
+#	@echo " $(YELLOW)/_/              /___/                 "
+#	@echo
+
 # Indica que las siguientes reglas no son archivos reales
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re norminette header
