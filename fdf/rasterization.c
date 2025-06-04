@@ -31,8 +31,8 @@ static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
 	get_point_data(data, p0);
 	get_point_data(data, p1);
-	isometric(&p0->x, &p0->y, p0->z);
-	isometric(&p1->x, &p1->y, p1->z);
+	isometric(&p0->x, &p0->y, p0->z, data);
+	isometric(&p1->x, &p1->y, p1->z, data);
 	p0->x += data->shift_x;
 	p0->y += data->shift_y;
 	p1->x += data->shift_x;

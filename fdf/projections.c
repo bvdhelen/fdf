@@ -21,22 +21,20 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)offset = color;
 }
 
-void	isometric(float *x, float *y, int z)
+void	isometric(float *x, float *y, int z, t_fdf *data)
 {
 	float	rot_display_x;
 	float	rot_display_y;
 	float	rot_x;
 	float	rot_y;
-	float	angle;
 
 	(void)z;
-	angle = PI / 4;
 	rot_display_x = *x;
 	rot_display_y = *y;
-	*x = (rot_display_x) * cos(angle) - (rot_display_y) * sin(angle);
-	*y = (rot_display_x) * sin(angle) + (rot_display_y) * cos(angle);
+	*x = (rot_display_x) * cos(data->theta) - (rot_display_y) * sin(data->theta);
+	*y = (rot_display_x) * sin(data->theta) + (rot_display_y) * cos(data->theta);
 	rot_x = *x;
 	rot_y = *y;
 	*x = (rot_x);
-	*y = (rot_y) * cos(angle) - z;
+	*y = (rot_y) * cos(data->phi) - z;
 }

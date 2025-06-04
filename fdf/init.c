@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:33:19 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/06/04 14:14:38 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/04 14:31:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	set_default_values(t_fdf *data)
 	data->shift_x = 0;
 	data->shift_y = 0;
 	data->z_factor = 0.1;
+	data->theta = PI / 4;
+	data->phi = PI / 4;
 	data->color = 0xFFFFFF;
 	data->img.img_ptr = NULL;
 	data->img.img_pixels_ptr = NULL;
