@@ -21,7 +21,7 @@ void	get_point_data(t_fdf *data, t_point *point)
 
 	xi = (int)(point->x);
 	yi = (int)(point->y);
-	point->z = (data->z_matrix[yi][xi] * data->zoom) * 0.1;
+	point->z = (data->z_matrix[yi][xi] * data->zoom) * data->z_factor;
 	point->color = data->color_matrix[yi][xi];
 	point->x *= data->zoom;
 	point->y *= data->zoom;

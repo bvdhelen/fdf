@@ -34,6 +34,10 @@ void	key_imput(int key, t_fdf *data)
 		data->zoom -= 1;
 	else if (key == XK_c || key == XK_C)
 		calculate_center(data);
+	else if ((key == XK_n || key == XK_N))
+		data->z_factor -= 0.1;
+	else if (key == XK_m || key == XK_M)
+		data->z_factor += 0.1;
 }
 
 int	handle_key(int key, t_fdf *data)

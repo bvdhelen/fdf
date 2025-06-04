@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:33:19 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/27 19:42:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/04 14:14:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	set_default_values(t_fdf *data)
 	data->zoom = 20;
 	data->shift_x = 0;
 	data->shift_y = 0;
+	data->z_factor = 0.1;
 	data->color = 0xFFFFFF;
 	data->img.img_ptr = NULL;
 	data->img.img_pixels_ptr = NULL;

@@ -70,18 +70,19 @@ typedef struct s_img
 //fdf
 typedef struct s_fdf
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
-	int		**color_matrix;
-	int		zoom;
-	int		color;
-	int		shift_x;
-	int		shift_y;
-	t_img	img;
+	int			width;
+	int			height;
+	int			**z_matrix;
+	int			**color_matrix;
+	int			zoom;
+	int			color;
+	int			shift_x;
+	int			shift_y;
+	float		z_factor;
+	t_img		img;
 
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 }	t_fdf;
 
 int		alloc_z_matrix(t_fdf *data);
