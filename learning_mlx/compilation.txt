@@ -1,7 +1,0 @@
-cc program.c -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o hola
-__________________________________________________________________________________________
-
-gcc program.c -Lminilibx-linux -lmlx_Linux -o process -lX11 -lXext
-
-minilibx-linux-> Path with the lib
-mlx_Linux-> Name of the archive file (libmlx_Linux.a)

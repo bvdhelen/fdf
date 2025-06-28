@@ -23,16 +23,16 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 void	isometric(float *x, float *y, int z, t_fdf *data)
 {
-	float	rot_display_x;
-	float	rot_display_y;
+	float	rot_disp_x;
+	float	rot_disp_y;
 	float	rot_x;
 	float	rot_y;
 
 	(void)z;
-	rot_display_x = *x;
-	rot_display_y = *y;
-	*x = (rot_display_x) * cos(data->theta) - (rot_display_y) * sin(data->theta);
-	*y = (rot_display_x) * sin(data->theta) + (rot_display_y) * cos(data->theta);
+	rot_disp_x = *x;
+	rot_disp_y = *y;
+	*x = (rot_disp_x) * cos(data->theta) - (rot_disp_y) * sin(data->theta);
+	*y = (rot_disp_x) * sin(data->theta) + (rot_disp_y) * cos(data->theta);
 	rot_x = *x;
 	rot_y = *y;
 	*x = (rot_x);

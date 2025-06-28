@@ -38,10 +38,14 @@ void	key_imput(int key, t_fdf *data)
 		data->z_factor -= 0.1;
 	else if (key == XK_m || key == XK_M)
 		data->z_factor += 0.1;
-	else if (key == 65363)	//flecha izq
+	else if (key == 65363)
 		data->theta -= (PI / 16);
-	else if (key == 65361)	//flecha dcha
+	else if (key == 65361)
 		data->theta += (PI / 16);
+	else if (key == 65362)
+		data->phi += (PI / 16);
+	else if (key == 65364)
+		data->phi -= (PI / 16);
 }
 
 int	handle_key(int key, t_fdf *data)
