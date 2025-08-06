@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldiaz-c <eldiaz-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:10:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/08/05 13:46:21 by eldiaz-c         ###   ########.fr       */
+/*   Created: 2025/08/06 11:14:07 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 11:14:09 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	display_instructions(t_fdf *data)
 	//char	*proj_str;
 	//char	*zoom_str;
 	//char	*temp;
-
 	y = 20;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 20, y,
 		0x0000FF, "Instrutions:");

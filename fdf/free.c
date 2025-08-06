@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:37:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/10/27 04:04:21 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 10:48:38 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 10:48:38 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*Función que libera la memoria de la matriz de alturas (z_matrix)*/
 void	free_z_matrix(t_fdf *data)
 {
 	int	i;
@@ -27,6 +28,7 @@ void	free_z_matrix(t_fdf *data)
 	free(data->z_matrix);
 }
 
+/*Función que libera la memoria de la matriz de colores (color_matrix)*/
 void	free_color_matrix(t_fdf *data)
 {
 	int	i;
@@ -42,6 +44,8 @@ void	free_color_matrix(t_fdf *data)
 	free(data->color_matrix);
 }
 
+/*Función que libera toda la memoria y recursos gráficos asociados a data
+Limpia la estructura t_fdf y los elementos asignados dinámicamente*/
 void	free_all(t_fdf *data)
 {
 	if (!data)

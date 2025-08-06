@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   alloc_matrices.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:37:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/10/27 04:04:21 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 10:12:22 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 10:12:22 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*Función para reservar memoria para las alturas (z)*/
 int	alloc_z_matrix(t_fdf *data)
 {
 	int	i;
@@ -34,6 +35,7 @@ int	alloc_z_matrix(t_fdf *data)
 	return (1);
 }
 
+/*Función para reservar memoria para los colores en hexadecimal (0xFFFFFF)*/
 int	alloc_color_matrix(t_fdf *data)
 {
 	int	i;

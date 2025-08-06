@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 19:05:10 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/07 20:17:28 by eldiaz-c         ###   ########.fr       */
+/*   Created: 2025/08/06 10:43:15 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 10:48:15 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*Función que traza las líneas desde cada punto de una fila
+hacia la derecha y hacia abajo*/
 static void	draw_points_in_row(t_fdf *data, int y)
 {
 	int		x;
@@ -39,6 +41,9 @@ static void	draw_points_in_row(t_fdf *data, int y)
 	}
 }
 
+/*Función que recorre todas las filas del mapa
+y dibuja la malla de puntos (wireframe) en la ventana.
+Representación visual del modelo*/
 void	draw(t_fdf *data)
 {
 	int		y;

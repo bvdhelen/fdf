@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 20:48:29 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/05/27 20:30:40 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 10:36:37 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 10:42:14 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*Función que calcula la componente roja (R) interpolada entre dos colores
+seguń el porcentaje*/
 int	interpolate_red(int start_color, int end_color, float percentage)
 {
 	int	start_r;
@@ -22,6 +24,8 @@ int	interpolate_red(int start_color, int end_color, float percentage)
 	return ((int)(start_r + (end_r - start_r) * percentage));
 }
 
+/*Función que calcula la componente verde (G) interpolada entre dos colores
+seguń el porcentaje*/
 int	interpolate_green(int start_color, int end_color, float percentage)
 {
 	int	start_g;
@@ -32,6 +36,8 @@ int	interpolate_green(int start_color, int end_color, float percentage)
 	return ((int)(start_g + (end_g - start_g) * percentage));
 }
 
+/*Función que calcula la componente azul (B) interpolada entre dos colores
+seguń el porcentaje*/
 int	interpolate_blue(int start_color, int end_color, float percentage)
 {
 	int	start_b;
@@ -42,6 +48,8 @@ int	interpolate_blue(int start_color, int end_color, float percentage)
 	return ((int)(start_b + (end_b - start_b) * percentage));
 }
 
+/*Función que devuelve un color intermedio entre un color inicial
+y uno final según la posición relativa en un gradiente*/
 int	get_gradient_color(int start, int end, int step_count, int steps)
 {
 	float	percentage;

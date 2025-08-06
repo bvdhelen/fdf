@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:37:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/10/27 04:04:21 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 11:15:29 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 11:15:29 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-//falta usarla
-void	ft_error(char *msg)
-{
-	ft_printf("%s\n", msg);
-	exit(1);
-}
 
 float	ft_abs(float num)
 {

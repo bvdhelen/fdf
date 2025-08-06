@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:37:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/10/27 04:04:21 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 11:04:24 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 11:04:24 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	key_imput(int key, t_fdf *data)
+static void	movement_and_rotation_keys(int key, t_fdf *data)
 {
-	if (key == XK_Escape)
-	{
-		ft_printf("Program closed using the 'ESC' key\n");
-		free_all(data);
-		exit(0);
-	}
 	if (key == XK_a || key == XK_A)
 		data->shift_x -= 10;
-	if (key == XK_s || key == XK_S)
+	else if (key == XK_s || key == XK_S)
 		data->shift_y += 10;
-	if (key == XK_w || key == XK_W)
+	else if (key == XK_w || key == XK_W)
 		data->shift_y -= 10;
-	if (key == XK_d || key == XK_D)
+	else if (key == XK_d || key == XK_D)
 		data->shift_x += 10;
-	else if (key == XK_plus)
-		data->zoom += 1;
-	else if (key == XK_minus && data->zoom > 1)
-		data->zoom -= 1;
-	else if (key == XK_c || key == XK_C)
-		calculate_center(data);
-	else if ((key == XK_l || key == XK_L))
-		data->z_factor -= 0.1;
-	else if (key == XK_h || key == XK_H)
-		data->z_factor += 0.1;
 	else if (key == 65363)
 		data->theta -= (PI / 32);
 	else if (key == 65361)
@@ -46,20 +30,48 @@ void	key_imput(int key, t_fdf *data)
 		data->phi += (PI / 32);
 	else if (key == 65364)
 		data->phi -= (PI / 32);
-	else if (key == XK_i || key == XK_I)
+}
+
+static void	zoom_and_flatten_keys(int key, t_fdf *data)
+{
+	if (key == XK_plus)
+		data->zoom += 1;
+	else if (key == XK_minus && data->zoom > 1)
+		data->zoom -= 1;
+	else if ((key == XK_l || key == XK_L))
+		data->z_factor -= 0.1;
+	else if (key == XK_h || key == XK_H)
+		data->z_factor += 0.1;
+}
+
+static void	projection_and_center_keys(int key, t_fdf *data)
+{
+	if (key == XK_i || key == XK_I)
 		data->projection_mode = PROJ_ISOMETRIC;
 	else if (key == XK_p || key == XK_P)
 	{
-		if (data->projection_mode < PROJ_PLANTA || data->projection_mode > PROJ_PERFIL)
+		if (data->projection_mode < PROJ_PLANTA
+			|| data->projection_mode > PROJ_PERFIL)
 			data->projection_mode = PROJ_PLANTA;
 		else
-			data->projection_mode = PROJ_PLANTA + ((data->projection_mode - PROJ_PLANTA + 1) % 3);
+			data->projection_mode = PROJ_PLANTA
+				+ ((data->projection_mode - PROJ_PLANTA + 1) % 3);
 	}
+	else if (key == XK_c || key == XK_C)
+		calculate_center(data);
 }
 
 int	handle_key(int key, t_fdf *data)
 {
-	key_imput(key, data);
+	if (key == XK_Escape)
+	{
+		ft_printf("Program closed using the 'ESC' key\n");
+		free_all(data);
+		exit(0);
+	}
+	movement_and_rotation_keys(key, data);
+	zoom_and_flatten_keys(key, data);
+	projection_and_center_keys(key, data);
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data);
@@ -76,6 +88,7 @@ int	handle_event(t_fdf *data)
 	exit(0);
 	return (0);
 }
+
 /*
 int	handle_mouse(int button, int x, int y, t_fdf *data)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   rasterization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:37:32 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2024/10/27 04:04:21 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 11:14:36 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 11:14:36 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,24 @@ void	get_point_data(t_fdf *data, t_point *point)
 	point->y *= data->zoom;
 }
 
+static void	apply_projection(t_fdf *data, t_point *p)
+{
+	if (data->projection_mode == PROJ_ISOMETRIC)
+		isometric(&p->x, &p->y, p->z, data);
+	else if (data->projection_mode == PROJ_PLANTA)
+		proj_planta(&p->x, &p->y, p->z, data);
+	else if (data->projection_mode == PROJ_ALZADO)
+		proj_alzado(&p->x, &p->y, p->z, data);
+	else if (data->projection_mode == PROJ_PERFIL)
+		proj_perfil(&p->x, &p->y, p->z, data);
+}
+
 static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
 	get_point_data(data, p0);
 	get_point_data(data, p1);
-	if (data->projection_mode == PROJ_ISOMETRIC)
-		isometric(&p0->x, &p0->y, p0->z, data);
-	else if (data->projection_mode == PROJ_PLANTA)
-		proj_planta(&p0->x, &p0->y, p0->z, data);
-	else if (data->projection_mode == PROJ_ALZADO)
-		proj_alzado(&p0->x, &p0->y, p0->z, data);
-	else if (data->projection_mode == PROJ_PERFIL)
-		proj_perfil(&p0->x, &p0->y, p0->z, data);
-	if (data->projection_mode == PROJ_ISOMETRIC)
-		isometric(&p1->x, &p1->y, p1->z, data);
-	else if (data->projection_mode == PROJ_PLANTA)
-		proj_planta(&p1->x, &p1->y, p1->z, data);
-	else if (data->projection_mode == PROJ_ALZADO)
-		proj_alzado(&p1->x, &p1->y, p1->z, data);
-	else if (data->projection_mode == PROJ_PERFIL)
-		proj_perfil(&p1->x, &p1->y, p1->z, data);
+	apply_projection(data, p0);
+	apply_projection(data, p1);
 	p0->x += data->shift_x;
 	p0->y += data->shift_y;
 	p1->x += data->shift_x;

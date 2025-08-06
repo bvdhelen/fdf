@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/06 11:13:21 by eldiaz-c          #+#    #+#              #
+#    Updated: 2025/08/06 11:13:21 by eldiaz-c         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Nombre del archivo de la biblioteca
 NAME = fdf
 
@@ -39,7 +51,7 @@ SRC = 	alloc_matrices.c \
 		color.c \
 		draw.c \
 		free.c \
-		handle.c \
+		controls.c \
 		init.c \
 		main.c \
 		menu.c \

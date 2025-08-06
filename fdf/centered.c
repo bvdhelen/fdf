@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   centered.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 14:08:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/05 14:08:35 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/06 10:14:36 by eldiaz-c          #+#    #+#             */
+/*   Updated: 2025/08/06 10:14:36 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,22 @@ void	calculate_z_range(t_fdf *data, int *range_min, int *range_max)
 	}
 }
 */
+/*Función que aplica la proyección adecuada al punto (x, y)
+según el modo de proyección*/
+void	project_point(float *x, float *y, int z, t_fdf *data)
+{
+	if (data->projection_mode == PROJ_ISOMETRIC)
+		isometric(x, y, z, data);
+	else if (data->projection_mode == PROJ_PLANTA)
+		proj_planta(x, y, z, data);
+	else if (data->projection_mode == PROJ_ALZADO)
+		proj_alzado(x, y, z, data);
+	else if (data->projection_mode == PROJ_PERFIL)
+		proj_perfil(x, y, z, data);
+}
 
+/*Función que actualiza los valores mínimo y máximo de la bounding box
+con las coordenadas proyectadas*/
 void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y)
 {
 	if (proj_x < bbox->min_x)
@@ -48,6 +63,8 @@ void	update_bounding_box(t_bbox *bbox, float proj_x, float proj_y)
 		bbox->max_y = proj_y;
 }
 
+/*Función que calcula la bounding box proyectando todos los puntos de la matriz
+según el modo de proyección*/
 void	calculate_bounding_box(t_fdf *data, t_bbox *bbox)
 {
 	int		x;
@@ -67,14 +84,7 @@ void	calculate_bounding_box(t_fdf *data, t_bbox *bbox)
 		{
 			proj_x = x * data->zoom;
 			proj_y = y * data->zoom;
-			if (data->projection_mode == PROJ_ISOMETRIC)
-				isometric(&proj_x, &proj_y, data->z_matrix[y][x], data);
-			else if (data->projection_mode == PROJ_PLANTA)
-				proj_planta(&proj_x, &proj_y, data->z_matrix[y][x], data);
-			else if (data->projection_mode == PROJ_ALZADO)
-				proj_alzado(&proj_x, &proj_y, data->z_matrix[y][x], data);
-			else if (data->projection_mode == PROJ_PERFIL)
-				proj_perfil(&proj_x, &proj_y, data->z_matrix[y][x], data);
+			project_point(&proj_x, &proj_y, data->z_matrix[y][x], data);
 			update_bounding_box(bbox, proj_x, proj_y);
 			x++;
 		}
@@ -82,6 +92,8 @@ void	calculate_bounding_box(t_fdf *data, t_bbox *bbox)
 	}
 }
 
+/*Función que calcula el centro del mapa en pantalla,
+a partir de la bounding box*/
 void	calculate_center(t_fdf *data)
 {
 	t_bbox	bbox;
