@@ -28,6 +28,10 @@
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
 # define PI 3.14159265358979
+# define PROJ_ISOMETRIC 0
+# define PROJ_PLANTA 1
+# define PROJ_ALZADO 2
+# define PROJ_PERFIL 3
 
 //puntos
 typedef struct s_point
@@ -78,6 +82,7 @@ typedef struct s_fdf
 	int			color;
 	int			shift_x;
 	int			shift_y;
+	int			projection_mode;
 	float		z_factor;
 	float		theta;
 	float		phi;
@@ -117,6 +122,9 @@ void	init_image(t_fdf *data, int width, int height);
 void	display_instructions(t_fdf *data);
 
 void	my_pixel_put(t_img *img, int x, int y, int color);
+void	proj_planta(float *x, float *y, int z, t_fdf *data);
+void	proj_alzado(float *x, float *y, int z, t_fdf *data);
+void	proj_perfil(float *x, float *y, int z, t_fdf *data);
 void	isometric(float *x, float *y, int z, t_fdf *data);
 
 void	get_point_data(t_fdf *data, t_point *point);

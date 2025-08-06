@@ -21,6 +21,31 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)offset = color;
 }
 
+//Planta: Proyección paralela sobre XY (vista desde arriba)
+void	proj_planta(float *x, float *y, int z, t_fdf *data)
+{
+	(void)data;
+	(void)x;
+	*y = *y - z;
+}
+
+//Alzado: Proyección paralela sobre XZ (vista frontal)
+void	proj_alzado(float *x, float *y, int z, t_fdf *data)
+{
+	(void)data;
+	(void)x;
+	*y = -z;
+}
+
+//Perfil: Proyección paralela sobre YZ (vista lateral)
+void	proj_perfil(float *x, float *y, int z, t_fdf *data)
+{
+	(void)data;
+	*x = *y;
+	*y = -z;
+}
+
+//Proyección isométrica
 void	isometric(float *x, float *y, int z, t_fdf *data)
 {
 	float	rot_disp_x;

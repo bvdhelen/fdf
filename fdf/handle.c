@@ -16,7 +16,7 @@ void	key_imput(int key, t_fdf *data)
 {
 	if (key == XK_Escape)
 	{
-		ft_printf("The %d key (ESC) has been pressed\n\n", key);
+		ft_printf("Program closed using the 'ESC' key\n");
 		free_all(data);
 		exit(0);
 	}
@@ -34,24 +34,32 @@ void	key_imput(int key, t_fdf *data)
 		data->zoom -= 1;
 	else if (key == XK_c || key == XK_C)
 		calculate_center(data);
-	else if ((key == XK_n || key == XK_N))
+	else if ((key == XK_l || key == XK_L))
 		data->z_factor -= 0.1;
-	else if (key == XK_m || key == XK_M)
+	else if (key == XK_h || key == XK_H)
 		data->z_factor += 0.1;
 	else if (key == 65363)
-		data->theta -= (PI / 16);
+		data->theta -= (PI / 32);
 	else if (key == 65361)
-		data->theta += (PI / 16);
+		data->theta += (PI / 32);
 	else if (key == 65362)
-		data->phi += (PI / 16);
+		data->phi += (PI / 32);
 	else if (key == 65364)
-		data->phi -= (PI / 16);
+		data->phi -= (PI / 32);
+	else if (key == XK_i || key == XK_I)
+		data->projection_mode = PROJ_ISOMETRIC;
+	else if (key == XK_p || key == XK_P)
+	{
+		if (data->projection_mode < PROJ_PLANTA || data->projection_mode > PROJ_PERFIL)
+			data->projection_mode = PROJ_PLANTA;
+		else
+			data->projection_mode = PROJ_PLANTA + ((data->projection_mode - PROJ_PLANTA + 1) % 3);
+	}
 }
 
 int	handle_key(int key, t_fdf *data)
 {
 	key_imput(key, data);
-	ft_printf("The %d key has been pressed\n\n", key);
 	init_image(data, WIN_WIDTH, WIN_HEIGHT);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data);
@@ -63,7 +71,7 @@ int	handle_key(int key, t_fdf *data)
 
 int	handle_event(t_fdf *data)
 {
-	ft_printf("Program closed using the 'x' button\n\n");
+	ft_printf("Program closed using the 'x' button\n");
 	free_all(data);
 	exit(0);
 	return (0);

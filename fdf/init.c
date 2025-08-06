@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldiaz-c <eldiaz-c@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:33:19 by eldiaz-c          #+#    #+#             */
-/*   Updated: 2025/06/04 14:31:41 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/05 11:36:28 by eldiaz-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	set_default_values(t_fdf *data)
 	data->img.bits_per_pixel = 0;
 	data->img.line_len = 0;
 	data->img.endian = 0;
+	data->projection_mode = 0;
 }
 
 int	init_data(t_fdf **data, char *file_name)

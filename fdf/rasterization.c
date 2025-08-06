@@ -21,6 +21,12 @@ void	get_point_data(t_fdf *data, t_point *point)
 
 	xi = (int)(point->x);
 	yi = (int)(point->y);
+	if (xi < 0 || xi >= data->width || yi < 0 || yi >= data->height)
+	{
+		point->z = 0;
+		point->color = 0xFFFFFF;
+		return ;
+	}
 	point->z = (data->z_matrix[yi][xi] * data->zoom) * data->z_factor;
 	point->color = data->color_matrix[yi][xi];
 	point->x *= data->zoom;
@@ -31,8 +37,22 @@ static void	init_bres(t_fdf *data, t_point *p0, t_point *p1, t_bresenham *bres)
 {
 	get_point_data(data, p0);
 	get_point_data(data, p1);
-	isometric(&p0->x, &p0->y, p0->z, data);
-	isometric(&p1->x, &p1->y, p1->z, data);
+	if (data->projection_mode == PROJ_ISOMETRIC)
+		isometric(&p0->x, &p0->y, p0->z, data);
+	else if (data->projection_mode == PROJ_PLANTA)
+		proj_planta(&p0->x, &p0->y, p0->z, data);
+	else if (data->projection_mode == PROJ_ALZADO)
+		proj_alzado(&p0->x, &p0->y, p0->z, data);
+	else if (data->projection_mode == PROJ_PERFIL)
+		proj_perfil(&p0->x, &p0->y, p0->z, data);
+	if (data->projection_mode == PROJ_ISOMETRIC)
+		isometric(&p1->x, &p1->y, p1->z, data);
+	else if (data->projection_mode == PROJ_PLANTA)
+		proj_planta(&p1->x, &p1->y, p1->z, data);
+	else if (data->projection_mode == PROJ_ALZADO)
+		proj_alzado(&p1->x, &p1->y, p1->z, data);
+	else if (data->projection_mode == PROJ_PERFIL)
+		proj_perfil(&p1->x, &p1->y, p1->z, data);
 	p0->x += data->shift_x;
 	p0->y += data->shift_y;
 	p1->x += data->shift_x;

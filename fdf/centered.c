@@ -67,7 +67,14 @@ void	calculate_bounding_box(t_fdf *data, t_bbox *bbox)
 		{
 			proj_x = x * data->zoom;
 			proj_y = y * data->zoom;
-			isometric(&proj_x, &proj_y, data->z_matrix[y][x], data);
+			if (data->projection_mode == PROJ_ISOMETRIC)
+				isometric(&proj_x, &proj_y, data->z_matrix[y][x], data);
+			else if (data->projection_mode == PROJ_PLANTA)
+				proj_planta(&proj_x, &proj_y, data->z_matrix[y][x], data);
+			else if (data->projection_mode == PROJ_ALZADO)
+				proj_alzado(&proj_x, &proj_y, data->z_matrix[y][x], data);
+			else if (data->projection_mode == PROJ_PERFIL)
+				proj_perfil(&proj_x, &proj_y, data->z_matrix[y][x], data);
 			update_bounding_box(bbox, proj_x, proj_y);
 			x++;
 		}
